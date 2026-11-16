@@ -27,7 +27,7 @@ export function SlideOriginal() {
         {/* Left Column: Full Master Movie Poster */}
         <div className="lg:col-span-5 flex flex-col gap-3 bg-zinc-950/80 p-4 rounded-2xl border border-purple-500/20 shadow-xl">
           {/* Exact Poster Replica matching the Main Page */}
-          <div className="relative aspect-[1043/1477] w-full rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl bg-[#06040d]">
+          <div className="relative aspect-[1043/1477] w-full rounded-xl overflow-hidden shadow-2xl bg-[#06040d]">
             {POSTER_LAYERS.map((layer) => {
               const leftPosition = layer.offsetXPercent ? `${layer.offsetXPercent}%` : "0%";
               const isLeaf = layer.id === "leaf";
