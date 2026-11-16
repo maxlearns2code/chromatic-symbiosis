@@ -64,12 +64,12 @@ export function SlideDeck() {
         </AnimatePresence>
       </main>
 
-      {/* Bottom Navigation Dock */}
-      <footer className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-5 py-2.5 rounded-full bg-zinc-950/85 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
+      {/* Bottom Navigation Dock (rounded-xl to match cards) */}
+      <footer className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 flex items-center gap-4 px-5 py-2.5 rounded-xl bg-zinc-950/85 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
         <button
           onClick={prevSlide}
           disabled={currentSlide === 0}
-          className="p-1.5 rounded-full hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all text-zinc-300"
+          className="p-1.5 rounded-lg hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all text-zinc-300"
           title="Previous Slide (←)"
         >
           <ChevronLeft className="w-5 h-5" />
@@ -82,7 +82,7 @@ export function SlideDeck() {
         <button
           onClick={nextSlide}
           disabled={currentSlide === totalSlides - 1}
-          className="p-1.5 rounded-full hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all text-zinc-300"
+          className="p-1.5 rounded-lg hover:bg-white/10 disabled:opacity-30 disabled:pointer-events-none transition-all text-zinc-300"
           title="Next Slide (→)"
         >
           <ChevronRight className="w-5 h-5" />
