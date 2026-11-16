@@ -22,23 +22,23 @@ export const POSTER_LAYERS: LayerConfig[] = [
     description: "Deep space and sub-ice cavern filled with distant bioluminescent celestial nebulae.",
   },
   {
-    id: "tree",
-    name: "The Living Portal Tree",
-    src: "/layers/tree.png",
-    zIndex: 15,
-    depth: 0.03,
-    blendMode: "normal",
-    offsetXPercent: 15, // Shifted to the right to perfectly align with the original poster composition
-    description: "Swirling violet tree structure functioning as an interdimensional living portal.",
-  },
-  {
     id: "soil",
     name: "Cavern Rock Base & Stream",
     src: "/layers/soil.png",
-    zIndex: 20, // Ground behind father and boys
+    zIndex: 20, // Ground bedrock
     depth: 0.02,
     blendMode: "normal",
     description: "Crystalline cave bedrock and luminous subterranean stream running along the floor.",
+  },
+  {
+    id: "tree",
+    name: "The Living Portal Tree",
+    src: "/layers/tree.png",
+    zIndex: 25, // ON TOP OF THE SOIL!
+    depth: 0.03,
+    blendMode: "normal",
+    offsetXPercent: 15, // Shifted to the right to perfectly align with the original poster composition
+    description: "Swirling violet tree structure standing on top of the soil bedrock.",
   },
   {
     id: "father",
@@ -82,7 +82,7 @@ export const POSTER_LAYERS: LayerConfig[] = [
     id: "leaf",
     name: "Warm Autumn Leaves",
     src: "/layers/leaf.png",
-    zIndex: 50, // ON TOP OF THE SMOKE!
+    zIndex: 50, // On top of the smoke
     depth: 0.08,
     blendMode: "normal",
     description: "Three warm, impossible organic forms floating on top of the smoke.",
