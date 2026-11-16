@@ -4,29 +4,54 @@ import { motion } from "framer-motion";
 
 export function TypographyOverlay() {
   return (
-    <div className="absolute top-[4%] left-[4.5%] right-[25%] z-50 pointer-events-none select-none">
+    <div className="absolute top-[3.5%] left-[3.5%] w-[57%] z-60 pointer-events-none select-none">
       <motion.div
-        initial={{ opacity: 0, y: -20 }}
+        initial={{ opacity: 0, y: -15 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-        className="flex flex-col"
+        transition={{ duration: 1, ease: "easeOut" }}
+        className="w-full flex flex-col"
       >
-        {/* Main Title: CHROMATIC */}
-        <h1 className="text-white font-impact tracking-[-0.03em] uppercase leading-[0.88] text-[11cqi] drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
-          Chromatic
-        </h1>
+        {/* SVG Title for 100% Pixel-Accurate Condensed Movie Poster Typography */}
+        <svg
+          viewBox="0 0 570 250"
+          className="w-full h-auto overflow-visible"
+          style={{ filter: "drop-shadow(0 4px 12px rgba(0,0,0,0.85))" }}
+        >
+          {/* CHROMATIC */}
+          <text
+            x="0"
+            y="98"
+            fontFamily="'Impact', 'Arial Narrow Bold', 'Bebas Neue', sans-serif"
+            fontSize="112"
+            fontWeight="900"
+            textLength="565"
+            lengthAdjust="spacingAndGlyphs"
+            fill="#ffffff"
+          >
+            CHROMATIC
+          </text>
 
-        {/* Main Title: SYMBIOSIS */}
-        <h1 className="text-white font-impact tracking-[-0.03em] uppercase leading-[0.88] text-[11cqi] drop-shadow-[0_4px_16px_rgba(0,0,0,0.8)]">
-          Symbiosis
-        </h1>
+          {/* SYMBIOSIS */}
+          <text
+            x="0"
+            y="200"
+            fontFamily="'Impact', 'Arial Narrow Bold', 'Bebas Neue', sans-serif"
+            fontSize="112"
+            fontWeight="900"
+            textLength="545"
+            lengthAdjust="spacingAndGlyphs"
+            fill="#ffffff"
+          >
+            SYMBIOSIS
+          </text>
+        </svg>
 
-        {/* Tagline */}
+        {/* Cinematic Tagline strictly constrained beneath the title */}
         <motion.p
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
-          transition={{ duration: 1.4, delay: 0.4 }}
-          className="mt-[2.2%] text-white/95 font-sans font-extrabold tracking-[-0.01em] uppercase text-[1.75cqi] leading-[1.15] max-w-[92%] drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]"
+          transition={{ duration: 1.2, delay: 0.3 }}
+          className="mt-1 text-white/95 font-sans font-bold tracking-[-0.01em] uppercase text-[1.4cqi] sm:text-[1.35cqi] leading-[1.1] max-w-[98%] drop-shadow-[0_2px_6px_rgba(0,0,0,0.95)]"
         >
           To unlock the portal to a new world, a father must guide his sons through the mystery of light.
         </motion.p>

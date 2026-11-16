@@ -15,13 +15,13 @@ export function PosterStage() {
   const { springX, springY, containerRef } = useMouseParallax(1);
 
   // Subtle 3D tilt of the entire poster frame
-  const frameRotateY = useTransform(springX, [-1, 1], [-8, 8]);
-  const frameRotateX = useTransform(springY, [-1, 1], [8, -8]);
+  const frameRotateY = useTransform(springX, [-1, 1], [-7, 7]);
+  const frameRotateX = useTransform(springY, [-1, 1], [7, -7]);
 
   return (
     <div
       ref={containerRef}
-      className="relative min-h-screen w-full flex items-center justify-center py-6 px-4 sm:px-8 overflow-hidden bg-[#06040d]"
+      className="relative min-h-screen w-full flex items-center justify-center pt-6 pb-24 px-4 sm:px-8 overflow-hidden bg-[#06040d]"
     >
       {/* Background Ambient Glow */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-950/30 via-slate-950/80 to-[#06040d]" />
@@ -33,10 +33,10 @@ export function PosterStage() {
           rotateX: isExploded ? 10 : frameRotateX,
           transformStyle: "preserve-3d",
         }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative @container w-full max-w-[560px] md:max-w-[620px] lg:max-w-[700px] xl:max-w-[760px] aspect-[1043/1477] rounded-xl overflow-visible shadow-[0_25px_70px_rgba(0,0,0,0.95)] border border-purple-500/20"
+        transition={{ duration: 0.4, ease: "easeOut" }}
+        className="relative @container w-full max-w-[480px] sm:max-w-[540px] md:max-w-[620px] lg:max-w-[680px] aspect-[1043/1477] rounded-xl overflow-visible shadow-[0_25px_70px_rgba(0,0,0,0.95)] border border-purple-500/20"
       >
-        {/* Render each stacked Photoshop layer */}
+        {/* Render each stacked Photoshop layer in calibrated order */}
         {POSTER_LAYERS.map((layer, index) => (
           <PosterLayer
             key={layer.id}
@@ -51,7 +51,7 @@ export function PosterStage() {
         {/* Ambient Stardust / Marine Snow Canvas */}
         <StardustCanvas />
 
-        {/* Cinematic Headline & Subtitle Typography */}
+        {/* Cinematic Headline & Subtitle Typography (strictly constrained to upper-left 57%) */}
         <TypographyOverlay />
 
         {/* Interactive Living Portal Button (embedded inside the tree vortex) */}
