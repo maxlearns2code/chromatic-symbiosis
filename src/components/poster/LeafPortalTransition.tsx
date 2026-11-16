@@ -15,7 +15,7 @@ export function LeafPortalTransition({
 }: LeafPortalTransitionProps) {
   const router = useRouter();
   const [isLeafMoving, setIsLeafMoving] = useState(false);
-  const [hasReachedTop, setHasReachedTop] = useState(false);
+  const [hasReachedTreeCenter, setHasReachedTreeCenter] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -33,12 +33,12 @@ export function LeafPortalTransition({
     setIsLeafMoving(true);
     onLeafMovingChange(true);
 
-    // Leaf ascends all the way to the top of the poster (850ms)
+    // Leaf ascends directly into the center of the tree (850ms)
     setTimeout(() => {
-      setHasReachedTop(true);
+      setHasReachedTreeCenter(true);
     }, 850);
 
-    // As it reaches the top, open the story page
+    // As it touches the center of the tree, open the story page
     setTimeout(() => {
       router.push("/story");
     }, 1050);
@@ -61,7 +61,7 @@ export function LeafPortalTransition({
         className="absolute cursor-pointer select-none rounded-full flex items-center justify-center"
         role="button"
         tabIndex={0}
-        aria-label="Click the leaf to send it to the top"
+        aria-label="Click the leaf to send it into the center of the tree"
       >
         {/* Soft Ambient White Halo on Hover */}
         <motion.div
@@ -74,9 +74,9 @@ export function LeafPortalTransition({
         />
       </div>
 
-      {/* Subtle dimensional fade as the leaf reaches the top */}
+      {/* Subtle dimensional fade as the leaf touches the tree center */}
       <AnimatePresence>
-        {hasReachedTop && (
+        {hasReachedTreeCenter && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 0.5, 0.95] }}

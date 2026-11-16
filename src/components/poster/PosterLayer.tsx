@@ -38,21 +38,22 @@ export function PosterLayer({
       }}
       className="absolute top-0 w-full h-full pointer-events-none select-none will-change-transform"
     >
-      {/* If leaf: floating idle, white halo on hover, and ascends all the way to the top on click */}
+      {/* If leaf: floating idle, white halo on hover, and flies up and to the RIGHT directly into the tree */}
       <motion.div
         animate={
           isLeaf
             ? {
-                // Pure white halo contour around the exact leaf silhouettes on hover
+                // Pure white halo contour around the leaf silhouettes on hover
                 filter: isLeafHovered
-                  ? "drop-shadow(0 0 16px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 32px rgba(255, 255, 255, 0.75)) brightness(1.2)"
+                  ? "drop-shadow(0 0 16px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 32px rgba(255, 255, 255, 0.75)) brightness(1.25)"
                   : "drop-shadow(0 0 0px rgba(255, 255, 255, 0)) brightness(1)",
                 ...(isLeafMoving
                   ? {
-                      x: ["0%", "1%", "2%"],
-                      y: ["0%", "-35%", "-70%"], // Glides all the way up to the very top of the poster!
-                      scale: [1, 0.85, 0.6],
-                      opacity: [1, 1, 0],
+                      x: ["0%", "14%", "26%"],    // Firm, unmistakable movement to the RIGHT!
+                      y: ["0%", "-18%", "-35%"],   // Travels UP directly into the tree's center
+                      scale: [1, 0.7, 0.25],       // Shrinks as it enters the depth of the tree
+                      rotate: [0, 15, 30],         // Tilts upwards and to the right
+                      opacity: [1, 1, 0],          // Fades into the tree center
                     }
                   : {}),
               }
@@ -63,6 +64,7 @@ export function PosterLayer({
           x: { duration: 0.85, ease: "easeInOut" },
           y: { duration: 0.85, ease: "easeInOut" },
           scale: { duration: 0.85, ease: "easeInOut" },
+          rotate: { duration: 0.85, ease: "easeInOut" },
           opacity: { duration: 0.85, ease: "easeInOut" },
         }}
         className={`relative w-full h-full ${isLeaf && !isLeafMoving ? "animate-float-leaves" : ""}`}
