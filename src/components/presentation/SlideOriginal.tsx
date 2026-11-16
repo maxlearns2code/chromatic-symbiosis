@@ -1,14 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import Image from "next/image";
-import { POSTER_LAYERS, LayerConfig } from "@/data/layersConfig";
+import { POSTER_LAYERS } from "@/data/layersConfig";
 import { TypographyOverlay } from "@/components/poster/TypographyOverlay";
 import { Layers, Sparkles } from "lucide-react";
 
 export function SlideOriginal() {
-  const [selectedLayer, setSelectedLayer] = useState<LayerConfig | null>(null);
-
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 pb-16">
       {/* Slide Title & Concept Header */}
@@ -36,7 +33,6 @@ export function SlideOriginal() {
 
           {/* Exact Poster Replica matching the Main Page */}
           <div className="relative aspect-[1043/1477] w-full rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl bg-[#06040d]">
-            {/* Render all stacked layers with exact offsets, blend modes, and leaf float */}
             {POSTER_LAYERS.map((layer) => {
               const leftPosition = layer.offsetXPercent ? `${layer.offsetXPercent}%` : "0%";
               const isLeaf = layer.id === "leaf";
@@ -65,7 +61,7 @@ export function SlideOriginal() {
               );
             })}
 
-            {/* Title and Subtitle Overlay (Identical to Main Page) */}
+            {/* Title and Subtitle Overlay */}
             <TypographyOverlay />
           </div>
 
@@ -74,78 +70,45 @@ export function SlideOriginal() {
           </p>
         </div>
 
-        {/* Right Column: Layer Dissection & Photographic Elements Collage */}
+        {/* Right Column: Static Showcase of the Layers & Elements Used */}
         <div className="lg:col-span-7 flex flex-col gap-4">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider flex items-center gap-2">
               <Layers className="w-4 h-4 text-fuchsia-400" />
-              <span>Deconstructed Photoshop Layers & Real Photography</span>
+              <span>Photoshop Layers & Elements Used</span>
             </h3>
-            <span className="text-xs text-zinc-500 font-mono">Click layer to inspect</span>
+            <span className="text-xs text-zinc-500 font-mono">8 Individual Components</span>
           </div>
 
+          {/* Static Layer Grid */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {POSTER_LAYERS.map((layer) => (
-              <button
+              <div
                 key={layer.id}
-                onClick={() => setSelectedLayer(layer)}
-                className={`flex flex-col rounded-xl overflow-hidden border transition-all text-left group ${
-                  selectedLayer?.id === layer.id
-                    ? "border-fuchsia-500 ring-2 ring-fuchsia-500/50 bg-purple-950/40"
-                    : "border-white/10 bg-zinc-900/60 hover:border-purple-500/50 hover:bg-zinc-800/60"
-                }`}
+                className="flex flex-col rounded-xl overflow-hidden border border-white/10 bg-zinc-900/60 shadow-md"
               >
                 <div className="relative aspect-[1043/1477] w-full bg-black/60 overflow-hidden">
                   <Image
                     src={layer.src}
                     alt={layer.name}
                     fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-300"
-                    sizes="200px"
+                    className="object-cover"
+                    sizes="(max-width: 640px) 50vw, 200px"
                   />
                   <div className="absolute top-1.5 right-1.5 bg-black/70 backdrop-blur-xs px-1.5 py-0.5 rounded text-[10px] font-mono text-purple-300">
                     z:{layer.zIndex}
                   </div>
                 </div>
-                <div className="p-2 flex flex-col">
-                  <span className="text-xs font-semibold text-zinc-200 truncate group-hover:text-fuchsia-300">
+                <div className="p-2 flex flex-col bg-zinc-950/50">
+                  <span className="text-xs font-semibold text-zinc-200 truncate">
                     {layer.name}
                   </span>
                   <span className="text-[10px] text-zinc-400 truncate">
                     {layer.blendMode === "screen" ? "Screen blend" : "Normal"}
                   </span>
                 </div>
-              </button>
+              </div>
             ))}
-          </div>
-
-          {/* Detailed Inspector Card for Selected Layer */}
-          <div className="p-4 rounded-xl bg-purple-950/20 border border-purple-500/30 flex flex-col sm:flex-row items-center gap-4">
-            <div className="relative w-20 h-28 shrink-0 bg-black/60 rounded-lg overflow-hidden border border-purple-500/40">
-              <Image
-                src={selectedLayer ? selectedLayer.src : "/layers/leaf.png"}
-                alt={selectedLayer ? selectedLayer.name : "Real Autumn Leaves"}
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="flex flex-col gap-1 text-center sm:text-left">
-              <div className="flex items-center gap-2 justify-center sm:justify-start">
-                <span className="text-xs font-mono uppercase tracking-wider text-fuchsia-400 font-semibold">
-                  {selectedLayer ? selectedLayer.name : "Key Element: Real Autumn Leaves Photography"}
-                </span>
-              </div>
-              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
-                {selectedLayer
-                  ? selectedLayer.description
-                  : "Photographed real fallen autumn leaves and composited them with soft masks into the dark ice-cavern, where the twin boys discover their warmth and see glowing veins of light matching their own bodies."}
-              </p>
-              <div className="flex items-center gap-4 text-[11px] text-zinc-400 font-mono mt-1 justify-center sm:justify-start">
-                <span>Native Scale: 1043 × 1477 px</span>
-                <span>•</span>
-                <span>Hand-Masked in Adobe Photoshop</span>
-              </div>
-            </div>
           </div>
         </div>
       </div>
