@@ -1,0 +1,140 @@
+"use client";
+
+import { useState } from "react";
+import Image from "next/image";
+import { POSTER_LAYERS, LayerConfig } from "@/data/layersConfig";
+import { Layers, Eye, Sparkles } from "lucide-react";
+
+export function SlideOriginal() {
+  const [selectedLayer, setSelectedLayer] = useState<LayerConfig | null>(null);
+
+  return (
+    <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 pb-16">
+      {/* Slide Title & Concept Header */}
+      <div className="flex flex-col gap-2">
+        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-fuchsia-400">
+          <Sparkles className="w-4 h-4" />
+          <span>Slide 1 of 4 • Handcrafted Human Artistry</span>
+        </div>
+        <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
+          Collage of <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400">Original Designs</span>
+        </h2>
+        <p className="text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
+          Built completely by hand in Adobe Photoshop without generative AI. Inspired by a conversation with my young twin boys about the colors of fallen autumn leaves, reimagined as a sci-fi family adventure in an underwater cavern beneath the frozen crust of Saturn&apos;s moon.
+        </p>
+      </div>
+
+      {/* Main Collage Layout */}
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+        {/* Left Column: Full Master Movie Poster */}
+        <div className="lg:col-span-5 flex flex-col gap-3 bg-zinc-950/80 p-4 rounded-2xl border border-purple-500/20 shadow-xl">
+          <div className="flex items-center justify-between text-xs text-purple-300 font-mono">
+            <span className="font-semibold">Master Composite</span>
+            <span className="text-zinc-500">1043 × 1477 px</span>
+          </div>
+
+          <div className="relative aspect-[1043/1477] w-full rounded-xl overflow-hidden border border-white/10 shadow-2xl group">
+            {/* Render stacked layers to recreate the master poster */}
+            {POSTER_LAYERS.map((layer) => (
+              <div
+                key={layer.id}
+                style={{ zIndex: layer.zIndex, mixBlendMode: layer.blendMode || "normal" }}
+                className="absolute inset-0 w-full h-full"
+              >
+                <Image
+                  src={layer.src}
+                  alt={layer.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 1024px) 100vw, 450px"
+                />
+              </div>
+            ))}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-50 flex items-end p-4">
+              <span className="text-xs text-zinc-200 font-medium">Original Hand-Composited Movie Poster</span>
+            </div>
+          </div>
+
+          <p className="text-xs text-zinc-400 italic">
+            &ldquo;To unlock the portal to a new world, a father must guide his sons through the mystery of light.&rdquo;
+          </p>
+        </div>
+
+        {/* Right Column: Layer Dissection & Photographic Elements Collage */}
+        <div className="lg:col-span-7 flex flex-col gap-4">
+          <div className="flex items-center justify-between">
+            <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider flex items-center gap-2">
+              <Layers className="w-4 h-4 text-fuchsia-400" />
+              <span>Deconstructed Photoshop Layers & Real Photography</span>
+            </h3>
+            <span className="text-xs text-zinc-500 font-mono">Click layer to inspect</span>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            {POSTER_LAYERS.map((layer) => (
+              <button
+                key={layer.id}
+                onClick={() => setSelectedLayer(layer)}
+                className={`flex flex-col rounded-xl overflow-hidden border transition-all text-left group ${
+                  selectedLayer?.id === layer.id
+                    ? "border-fuchsia-500 ring-2 ring-fuchsia-500/50 bg-purple-950/40"
+                    : "border-white/10 bg-zinc-900/60 hover:border-purple-500/50 hover:bg-zinc-800/60"
+                }`}
+              >
+                <div className="relative aspect-[1043/1477] w-full bg-black/60 overflow-hidden">
+                  <Image
+                    src={layer.src}
+                    alt={layer.name}
+                    fill
+                    className="object-cover group-hover:scale-105 transition-transform duration-300"
+                    sizes="200px"
+                  />
+                  <div className="absolute top-1.5 right-1.5 bg-black/70 backdrop-blur-xs px-1.5 py-0.5 rounded text-[10px] font-mono text-purple-300">
+                    z:{layer.zIndex}
+                  </div>
+                </div>
+                <div className="p-2 flex flex-col">
+                  <span className="text-xs font-semibold text-zinc-200 truncate group-hover:text-fuchsia-300">
+                    {layer.name}
+                  </span>
+                  <span className="text-[10px] text-zinc-400 truncate">
+                    {layer.blendMode === "screen" ? "Screen blend" : "Normal"}
+                  </span>
+                </div>
+              </button>
+            ))}
+          </div>
+
+          {/* Detailed Inspector Card for Selected Layer */}
+          <div className="p-4 rounded-xl bg-purple-950/20 border border-purple-500/30 flex flex-col sm:flex-row items-center gap-4">
+            <div className="relative w-20 h-28 shrink-0 bg-black/60 rounded-lg overflow-hidden border border-purple-500/40">
+              <Image
+                src={selectedLayer ? selectedLayer.src : "/layers/leaf.png"}
+                alt={selectedLayer ? selectedLayer.name : "Real Autumn Leaves"}
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="flex flex-col gap-1 text-center sm:text-left">
+              <div className="flex items-center gap-2 justify-center sm:justify-start">
+                <span className="text-xs font-mono uppercase tracking-wider text-fuchsia-400 font-semibold">
+                  {selectedLayer ? selectedLayer.name : "Key Element: Real Autumn Leaves Photography"}
+                </span>
+              </div>
+              <p className="text-xs sm:text-sm text-zinc-300 leading-relaxed">
+                {selectedLayer
+                  ? selectedLayer.description
+                  : "Photographed real fallen autumn leaves and composited them with soft masks into the dark ice-cavern, where the twin boys discover their warmth and see glowing veins of light matching their own bodies."}
+              </p>
+              <div className="flex items-center gap-4 text-[11px] text-zinc-400 font-mono mt-1 justify-center sm:justify-start">
+                <span>Native Scale: 1043 × 1477 px</span>
+                <span>•</span>
+                <span>Hand-Masked in Adobe Photoshop</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
