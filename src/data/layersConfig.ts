@@ -8,6 +8,7 @@ export interface LayerConfig {
   opacity?: number;
   description: string;
   is2x?: boolean;
+  offsetXPercent?: number; // Horizontal offset percentage to match poster composition
 }
 
 export const POSTER_LAYERS: LayerConfig[] = [
@@ -27,6 +28,7 @@ export const POSTER_LAYERS: LayerConfig[] = [
     zIndex: 15,
     depth: 0.03,
     blendMode: "normal",
+    offsetXPercent: 15, // Shifted to the right to perfectly align with the original poster composition
     description: "Swirling violet tree structure functioning as an interdimensional living portal.",
   },
   {
@@ -46,15 +48,6 @@ export const POSTER_LAYERS: LayerConfig[] = [
     depth: 0.04,
     blendMode: "normal",
     description: "Cosmic protector guiding his sons with an ocular chest core and rainbow energy tendrils.",
-  },
-  {
-    id: "leaf",
-    name: "Warm Autumn Leaves",
-    src: "/layers/leaf.png",
-    zIndex: 35, // Floating leaves with gentle animation
-    depth: 0.08,
-    blendMode: "normal",
-    description: "Three warm, impossible organic forms floating in the dark ocean cave.",
   },
   {
     id: "right-kid",
@@ -78,11 +71,20 @@ export const POSTER_LAYERS: LayerConfig[] = [
     id: "smoke",
     name: "Atmospheric Thermal Mist",
     src: "/layers/smoke.png",
-    zIndex: 45, // IN FRONT of the kids and their joined hands!
+    zIndex: 45, // In front of the kids' hands
     depth: 0, // Static: DOES NOT MOVE
     blendMode: "screen",
     opacity: 0.9,
     is2x: true,
     description: "Ethereal hydrothermal smoke resting statically in front of the kids' hands.",
+  },
+  {
+    id: "leaf",
+    name: "Warm Autumn Leaves",
+    src: "/layers/leaf.png",
+    zIndex: 50, // ON TOP OF THE SMOKE!
+    depth: 0.08,
+    blendMode: "normal",
+    description: "Three warm, impossible organic forms floating on top of the smoke.",
   },
 ];

@@ -30,10 +30,10 @@ export function PortalButton({ onWarpStart }: PortalButtonProps) {
       <div
         className="absolute z-65 flex items-center justify-center cursor-pointer -translate-x-1/2 -translate-y-1/2"
         style={{
-          top: "20%",
-          left: "72%",
-          width: "15%",
-          height: "11%",
+          top: "19%",
+          left: "71%",
+          width: "14%",
+          height: "10%",
         }}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}

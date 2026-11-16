@@ -23,16 +23,20 @@ export function PosterLayer({
   // The leaves float gently in place
   const isLeaf = layer.id === "leaf";
 
+  // Optional horizontal offset (e.g. for tree to align to right)
+  const leftPosition = layer.offsetXPercent ? `${layer.offsetXPercent}%` : "0%";
+
   return (
     <motion.div
       style={{
         zIndex: layer.zIndex,
+        left: leftPosition,
         x: translateX,
         y: translateY,
         mixBlendMode: layer.blendMode || "normal",
         opacity: layer.opacity ?? 1,
       }}
-      className="absolute inset-0 w-full h-full pointer-events-none select-none will-change-transform"
+      className="absolute top-0 w-full h-full pointer-events-none select-none will-change-transform"
     >
       <div className={`relative w-full h-full ${isLeaf ? "animate-float-leaves" : ""}`}>
         <Image
