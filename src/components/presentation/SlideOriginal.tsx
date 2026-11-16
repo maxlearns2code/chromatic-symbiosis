@@ -87,12 +87,9 @@ export function SlideOriginal() {
                     sizes="(max-width: 640px) 50vw, 200px"
                   />
                 </div>
-                <div className="p-2 flex flex-col bg-zinc-950/50">
-                  <span className="text-xs font-semibold text-zinc-200 truncate">
+                <div className="p-2 bg-zinc-950/50">
+                  <span className="text-xs font-semibold text-zinc-200 truncate block">
                     {layer.name}
-                  </span>
-                  <span className="text-[10px] text-zinc-400 truncate">
-                    {layer.blendMode === "screen" ? "Screen blend" : "Normal"}
                   </span>
                 </div>
               </div>
