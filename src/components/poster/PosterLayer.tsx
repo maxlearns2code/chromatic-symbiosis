@@ -17,7 +17,6 @@ export function PosterLayer({
   springY,
   isLeafMoving = false,
 }: PosterLayerProps) {
-  // Static layers (like smoke) have zero depth/shift
   const maxShift = 24;
   const translateX = useTransform(springX, (val) => (layer.depth === 0 ? 0 : val * layer.depth * maxShift));
   const translateY = useTransform(springY, (val) => (layer.depth === 0 ? 0 : val * layer.depth * maxShift));
@@ -37,22 +36,21 @@ export function PosterLayer({
       }}
       className="absolute top-0 w-full h-full pointer-events-none select-none will-change-transform"
     >
-      {/* If this is the leaf layer, animate it flying directly into the tree vortex on click */}
+      {/* When clicked, the leaf floats UP directly to touch the button at the top */}
       <motion.div
         animate={
           isLeaf && isLeafMoving
             ? {
-                x: ["0%", "3%", "6%"],
-                y: ["0%", "-18%", "-36%"], // Glides up directly into the swirling tree vortex
-                scale: [1, 0.75, 0.25],    // Shrinks as it enters the depth of the vortex
-                rotate: [0, 120, 260],     // Gentle organic spiral
-                opacity: [1, 1, 0],        // Fades into the center of the vortex
+                x: ["0%", "12%", "23%"],
+                y: ["0%", "-25%", "-49%"], // Travels up directly to the button at the top-right
+                scale: [1, 0.75, 0.35],     // Shrinks slightly as it ascends
+                opacity: [1, 1, 0],         // Fades as it touches the button
               }
             : {}
         }
         transition={{
-          duration: 0.85,
-          ease: [0.34, 1.15, 0.64, 1],
+          duration: 0.8,
+          ease: "easeInOut",
         }}
         className={`relative w-full h-full ${isLeaf && !isLeafMoving ? "animate-float-leaves" : ""}`}
       >
