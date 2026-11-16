@@ -9,6 +9,7 @@ interface PosterLayerProps {
   springX: MotionValue<number>;
   springY: MotionValue<number>;
   isLeafMoving?: boolean;
+  isLeafHovered?: boolean;
 }
 
 export function PosterLayer({
@@ -16,6 +17,7 @@ export function PosterLayer({
   springX,
   springY,
   isLeafMoving = false,
+  isLeafHovered = false,
 }: PosterLayerProps) {
   const maxShift = 24;
   const translateX = useTransform(springX, (val) => (layer.depth === 0 ? 0 : val * layer.depth * maxShift));
@@ -36,21 +38,34 @@ export function PosterLayer({
       }}
       className="absolute top-0 w-full h-full pointer-events-none select-none will-change-transform"
     >
-      {/* When clicked, the leaf floats UP directly to touch the button at the top */}
+      {/* If leaf: smooth floating, white halo on hover, and ascending into tree on click */}
       <motion.div
         animate={
-          isLeaf && isLeafMoving
+          isLeaf
             ? {
-                x: ["0%", "12%", "23%"],
-                y: ["0%", "-25%", "-49%"], // Travels up directly to the button at the top-right
-                scale: [1, 0.75, 0.35],     // Shrinks slightly as it ascends
-                opacity: [1, 1, 0],         // Fades as it touches the button
+                // Pure white halo contour around the exact leaf silhouettes on hover
+                filter: isLeafHovered
+                  ? "drop-shadow(0 0 16px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 32px rgba(255, 255, 255, 0.75)) brightness(1.2)"
+                  : "drop-shadow(0 0 0px rgba(255, 255, 255, 0)) brightness(1)",
+                ...(isLeafMoving
+                  ? {
+                      x: ["0%", "3%", "6%"],
+                      y: ["0%", "-18%", "-36%"], // Glides up directly into the tree vortex
+                      scale: [1, 0.7, 0.2],
+                      rotate: [0, 90, 180],
+                      opacity: [1, 1, 0],
+                    }
+                  : {}),
               }
             : {}
         }
         transition={{
-          duration: 0.8,
-          ease: "easeInOut",
+          filter: { duration: 0.25, ease: "easeOut" },
+          x: { duration: 0.85, ease: "easeInOut" },
+          y: { duration: 0.85, ease: "easeInOut" },
+          scale: { duration: 0.85, ease: "easeInOut" },
+          rotate: { duration: 0.85, ease: "easeInOut" },
+          opacity: { duration: 0.85, ease: "easeInOut" },
         }}
         className={`relative w-full h-full ${isLeaf && !isLeafMoving ? "animate-float-leaves" : ""}`}
       >
@@ -60,7 +75,7 @@ export function PosterLayer({
           fill
           priority={layer.zIndex <= 30}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 850px"
-          className="object-cover w-full h-full"
+          className="object-cover w-full h-full transition-all"
         />
       </motion.div>
     </motion.div>

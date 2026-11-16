@@ -11,6 +11,7 @@ import { LeafPortalTransition } from "./LeafPortalTransition";
 export function PosterStage() {
   const { springX, springY, containerRef } = useMouseParallax(0.8);
   const [isLeafMoving, setIsLeafMoving] = useState(false);
+  const [isLeafHovered, setIsLeafHovered] = useState(false);
 
   return (
     <div
@@ -30,6 +31,7 @@ export function PosterStage() {
             springX={springX}
             springY={springY}
             isLeafMoving={isLeafMoving}
+            isLeafHovered={layer.id === "leaf" ? isLeafHovered : false}
           />
         ))}
 
@@ -39,8 +41,11 @@ export function PosterStage() {
         {/* Cinematic Headline & Subtitle Typography */}
         <TypographyOverlay />
 
-        {/* Top Button and Interactive Leaf Trigger */}
-        <LeafPortalTransition onLeafMovingChange={setIsLeafMoving} />
+        {/* Interactive Leaf Trigger with White Halo on Hover */}
+        <LeafPortalTransition
+          onLeafMovingChange={setIsLeafMoving}
+          onHoverChange={setIsLeafHovered}
+        />
       </div>
     </div>
   );
