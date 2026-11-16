@@ -33,15 +33,15 @@ export function LeafPortalTransition({
     setIsLeafMoving(true);
     onLeafMovingChange(true);
 
-    // Leaf ascends directly into the center of the tree (850ms)
+    // Leaf moves to the tree in one single fluid 750ms step
     setTimeout(() => {
       setHasReachedTreeCenter(true);
-    }, 850);
+    }, 700);
 
-    // As it touches the center of the tree, open the story page
+    // Open the story page smoothly as it arrives
     setTimeout(() => {
       router.push("/story");
-    }, 1050);
+    }, 850);
   };
 
   return (
@@ -69,7 +69,7 @@ export function LeafPortalTransition({
             opacity: isHovered && !isLeafMoving ? 0.75 : 0,
             scale: isHovered && !isLeafMoving ? 1.15 : 0.85,
           }}
-          transition={{ duration: 0.3, ease: "easeOut" }}
+          transition={{ duration: 0.25, ease: "easeOut" }}
           className="absolute inset-0 rounded-full bg-radial from-white/40 via-white/10 to-transparent blur-md pointer-events-none"
         />
       </div>
@@ -81,7 +81,7 @@ export function LeafPortalTransition({
             initial={{ opacity: 0 }}
             animate={{ opacity: [0, 0.5, 0.95] }}
             exit={{ opacity: 0 }}
-            transition={{ duration: 0.35 }}
+            transition={{ duration: 0.3 }}
             className="fixed inset-0 z-[120] pointer-events-none bg-radial from-fuchsia-600/40 via-purple-950/90 to-[#06040d]"
           />
         )}
