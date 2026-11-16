@@ -1,14 +1,17 @@
 "use client";
 
+import { useState } from "react";
+import { motion } from "framer-motion";
 import { POSTER_LAYERS } from "@/data/layersConfig";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
 import { PosterLayer } from "./PosterLayer";
 import { StardustCanvas } from "./StardustCanvas";
 import { TypographyOverlay } from "./TypographyOverlay";
-import { PortalButton } from "./PortalButton";
+import { LeafPortalTransition } from "./LeafPortalTransition";
 
 export function PosterStage() {
   const { springX, springY, containerRef } = useMouseParallax(0.8);
+  const [isFlyThrough, setIsFlyThrough] = useState(false);
 
   return (
     <div
@@ -18,8 +21,24 @@ export function PosterStage() {
       {/* Background Ambient Glow */}
       <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-purple-950/25 via-slate-950/80 to-[#06040d]" />
 
-      {/* Main 2D Poster Container (Flat, no bottom buttons) */}
-      <div
+      {/* Main Poster Container with 1043:1477 Native Aspect Ratio */}
+      <motion.div
+        animate={
+          isFlyThrough
+            ? {
+                scale: 5.2,
+                opacity: [1, 1, 0],
+                filter: ["brightness(1)", "brightness(2)", "brightness(4)"],
+              }
+            : { scale: 1, opacity: 1, filter: "brightness(1)" }
+        }
+        style={{
+          transformOrigin: "71% 19%", // Centers zoom exactly on the tree's swirling vortex!
+        }}
+        transition={{
+          duration: 0.95,
+          ease: [0.22, 1, 0.36, 1],
+        }}
         className="relative @container w-full max-w-[480px] sm:max-w-[540px] md:max-w-[620px] lg:max-w-[680px] aspect-[1043/1477] rounded-xl overflow-hidden shadow-[0_25px_70px_rgba(0,0,0,0.95)] border border-purple-500/20"
       >
         {/* Render each stacked Photoshop layer */}
@@ -38,9 +57,9 @@ export function PosterStage() {
         {/* Cinematic Headline & Subtitle Typography */}
         <TypographyOverlay />
 
-        {/* Interactive Living Portal Button (top of the poster and tree vortex) */}
-        <PortalButton />
-      </div>
+        {/* Interactive Leaf Awakening, Light Compass Beam & Fly-Through Zoom */}
+        <LeafPortalTransition onFlyThroughChange={setIsFlyThrough} />
+      </motion.div>
     </div>
   );
 }
