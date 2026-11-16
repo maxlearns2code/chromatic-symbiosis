@@ -48,21 +48,10 @@ export const POSTER_LAYERS: LayerConfig[] = [
     description: "Cosmic protector guiding his sons with an ocular chest core and rainbow energy tendrils.",
   },
   {
-    id: "smoke",
-    name: "Atmospheric Thermal Mist",
-    src: "/layers/smoke.png",
-    zIndex: 32, // Behind the hands of the kids (kids are zIndex 40 and 41)
-    depth: 0, // Static: DOES NOT MOVE
-    blendMode: "screen",
-    opacity: 0.85,
-    is2x: true,
-    description: "Ethereal hydrothermal smoke resting statically behind the kids' hands.",
-  },
-  {
     id: "leaf",
     name: "Warm Autumn Leaves",
     src: "/layers/leaf.png",
-    zIndex: 35, // Floating leaves
+    zIndex: 35, // Floating leaves with gentle animation
     depth: 0.08,
     blendMode: "normal",
     description: "Three warm, impossible organic forms floating in the dark ocean cave.",
@@ -71,7 +60,7 @@ export const POSTER_LAYERS: LayerConfig[] = [
     id: "right-kid",
     name: "Twin Brother (Left in view)",
     src: "/layers/right kid.png",
-    zIndex: 40, // Foreground kid
+    zIndex: 40,
     depth: 0.06,
     blendMode: "normal",
     description: "Twin son holding hands, with glowing head and chest core.",
@@ -80,9 +69,20 @@ export const POSTER_LAYERS: LayerConfig[] = [
     id: "left-kid",
     name: "Twin Brother (Right in view)",
     src: "/layers/left kid.png",
-    zIndex: 41, // Foreground kid
+    zIndex: 41,
     depth: 0.06,
     blendMode: "normal",
     description: "Twin son projecting light towards the warm leaf organisms.",
+  },
+  {
+    id: "smoke",
+    name: "Atmospheric Thermal Mist",
+    src: "/layers/smoke.png",
+    zIndex: 45, // IN FRONT of the kids and their joined hands!
+    depth: 0, // Static: DOES NOT MOVE
+    blendMode: "screen",
+    opacity: 0.9,
+    is2x: true,
+    description: "Ethereal hydrothermal smoke resting statically in front of the kids' hands.",
   },
 ];
