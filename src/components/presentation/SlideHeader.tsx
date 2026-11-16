@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowLeft, User, Sparkles } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 
 interface SlideHeaderProps {
   currentSlide: number;
@@ -28,13 +28,6 @@ export function SlideHeader({ currentSlide, totalSlides, onSelectSlide }: SlideH
           <ArrowLeft className="w-3.5 h-3.5" />
           <span>Back to Living Poster</span>
         </Link>
-
-        <div className="h-4 w-[1px] bg-white/15 hidden sm:block" />
-
-        <div className="hidden sm:flex items-center gap-1.5 text-xs text-purple-300/80 font-mono">
-          <Sparkles className="w-3 h-3 text-fuchsia-400" />
-          <span>Chromatic Symbiosis</span>
-        </div>
       </div>
 
       {/* Center: Slide Progress Tabs */}
