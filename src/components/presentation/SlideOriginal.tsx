@@ -71,7 +71,7 @@ export function SlideOriginal() {
             <span className="text-xs text-zinc-500 font-mono">8 Individual Components</span>
           </div>
 
-          {/* Static Layer Grid */}
+          {/* Static Layer Grid (Clean, no technical z-index badges) */}
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
             {POSTER_LAYERS.map((layer) => (
               <div
@@ -86,9 +86,6 @@ export function SlideOriginal() {
                     className="object-cover"
                     sizes="(max-width: 640px) 50vw, 200px"
                   />
-                  <div className="absolute top-1.5 right-1.5 bg-black/70 backdrop-blur-xs px-1.5 py-0.5 rounded text-[10px] font-mono text-purple-300">
-                    z:{layer.zIndex}
-                  </div>
                 </div>
                 <div className="p-2 flex flex-col bg-zinc-950/50">
                   <span className="text-xs font-semibold text-zinc-200 truncate">
