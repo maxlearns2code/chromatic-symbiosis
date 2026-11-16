@@ -63,12 +63,11 @@ export function SlideOriginal() {
 
         {/* Right Column: Static Showcase of the Layers & Elements Used */}
         <div className="lg:col-span-7 flex flex-col gap-4">
-          <div className="flex items-center justify-between">
+          <div className="flex items-center">
             <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider flex items-center gap-2">
               <Layers className="w-4 h-4 text-fuchsia-400" />
               <span>Photoshop Layers & Elements Used</span>
             </h3>
-            <span className="text-xs text-zinc-500 font-mono">8 Individual Components</span>
           </div>
 
           {/* Static Layer Grid (Clean, no technical z-index badges) */}
