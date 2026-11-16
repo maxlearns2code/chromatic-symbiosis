@@ -18,7 +18,7 @@ export function SlideOriginal() {
           Collage of <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-fuchsia-400 to-pink-400">Original Designs</span>
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Built completely by hand in Adobe Photoshop without generative AI. Inspired by a conversation with my young twin boys about the colors of fallen autumn leaves, reimagined as a sci-fi family adventure in an underwater cavern beneath the frozen crust of Saturn&apos;s moon.
+          Built completely by hand in Adobe Photoshop without generative AI. Inspired by a conversation with my young twin boys about the colors of fallen autumn leaves. Reimagined as a sci-fi family adventure in an underwater cavern beneath the frozen crust of Saturn&apos;s moon.
         </p>
       </div>
 
