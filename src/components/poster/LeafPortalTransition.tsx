@@ -15,7 +15,7 @@ export function LeafPortalTransition({
 }: LeafPortalTransitionProps) {
   const router = useRouter();
   const [isLeafMoving, setIsLeafMoving] = useState(false);
-  const [hasReachedTree, setHasReachedTree] = useState(false);
+  const [hasReachedTop, setHasReachedTop] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -33,20 +33,20 @@ export function LeafPortalTransition({
     setIsLeafMoving(true);
     onLeafMovingChange(true);
 
-    // Leaf travels up into the tree vortex (850ms)
+    // Leaf ascends all the way to the top of the poster (850ms)
     setTimeout(() => {
-      setHasReachedTree(true);
+      setHasReachedTop(true);
     }, 850);
 
-    // When the leaf touches the tree, the other page opens
+    // As it reaches the top, open the story page
     setTimeout(() => {
       router.push("/story");
-    }, 1100);
+    }, 1050);
   };
 
   return (
     <>
-      {/* Clickable Leaf Hotspot (Standard pointer cursor, no text, no extra UI) */}
+      {/* Clickable Leaf Hotspot (Standard pointer cursor) */}
       <div
         style={{
           zIndex: 75,
@@ -61,9 +61,9 @@ export function LeafPortalTransition({
         className="absolute cursor-pointer select-none rounded-full flex items-center justify-center"
         role="button"
         tabIndex={0}
-        aria-label="Click the leaf to travel into the tree portal"
+        aria-label="Click the leaf to send it to the top"
       >
-        {/* Soft Ambient White Halo Aura on Hover */}
+        {/* Soft Ambient White Halo on Hover */}
         <motion.div
           animate={{
             opacity: isHovered && !isLeafMoving ? 0.75 : 0,
@@ -74,15 +74,15 @@ export function LeafPortalTransition({
         />
       </div>
 
-      {/* Subtle dimensional flash when the leaf touches the tree vortex */}
+      {/* Subtle dimensional fade as the leaf reaches the top */}
       <AnimatePresence>
-        {hasReachedTree && (
+        {hasReachedTop && (
           <motion.div
             initial={{ opacity: 0 }}
-            animate={{ opacity: [0, 0.6, 1] }}
+            animate={{ opacity: [0, 0.5, 0.95] }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed inset-0 z-[120] pointer-events-none bg-radial from-fuchsia-600/50 via-purple-950/95 to-[#06040d]"
+            className="fixed inset-0 z-[120] pointer-events-none bg-radial from-fuchsia-600/40 via-purple-950/90 to-[#06040d]"
           />
         )}
       </AnimatePresence>

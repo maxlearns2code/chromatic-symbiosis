@@ -38,7 +38,7 @@ export function PosterLayer({
       }}
       className="absolute top-0 w-full h-full pointer-events-none select-none will-change-transform"
     >
-      {/* If leaf: smooth floating, white halo on hover, and ascending into tree on click */}
+      {/* If leaf: floating idle, white halo on hover, and ascends all the way to the top on click */}
       <motion.div
         animate={
           isLeaf
@@ -49,10 +49,9 @@ export function PosterLayer({
                   : "drop-shadow(0 0 0px rgba(255, 255, 255, 0)) brightness(1)",
                 ...(isLeafMoving
                   ? {
-                      x: ["0%", "3%", "6%"],
-                      y: ["0%", "-18%", "-36%"], // Glides up directly into the tree vortex
-                      scale: [1, 0.7, 0.2],
-                      rotate: [0, 90, 180],
+                      x: ["0%", "1%", "2%"],
+                      y: ["0%", "-35%", "-70%"], // Glides all the way up to the very top of the poster!
+                      scale: [1, 0.85, 0.6],
                       opacity: [1, 1, 0],
                     }
                   : {}),
@@ -64,7 +63,6 @@ export function PosterLayer({
           x: { duration: 0.85, ease: "easeInOut" },
           y: { duration: 0.85, ease: "easeInOut" },
           scale: { duration: 0.85, ease: "easeInOut" },
-          rotate: { duration: 0.85, ease: "easeInOut" },
           opacity: { duration: 0.85, ease: "easeInOut" },
         }}
         className={`relative w-full h-full ${isLeaf && !isLeafMoving ? "animate-float-leaves" : ""}`}
