@@ -3,7 +3,7 @@ export interface LayerConfig {
   name: string;
   src: string;
   zIndex: number;
-  depth: number; // Parallax multiplier (higher = more movement)
+  depth: number; // Parallax multiplier (0 = static)
   blendMode?: "normal" | "screen" | "lighten" | "overlay";
   opacity?: number;
   description: string;
@@ -16,7 +16,7 @@ export const POSTER_LAYERS: LayerConfig[] = [
     name: "Cosmic Ocean & Nebula",
     src: "/layers/background.png",
     zIndex: 10,
-    depth: 0.02,
+    depth: 0.015,
     blendMode: "normal",
     description: "Deep space and sub-ice cavern filled with distant bioluminescent celestial nebulae.",
   },
@@ -25,7 +25,7 @@ export const POSTER_LAYERS: LayerConfig[] = [
     name: "The Living Portal Tree",
     src: "/layers/tree.png",
     zIndex: 15,
-    depth: 0.04,
+    depth: 0.03,
     blendMode: "normal",
     description: "Swirling violet tree structure functioning as an interdimensional living portal.",
   },
@@ -33,56 +33,56 @@ export const POSTER_LAYERS: LayerConfig[] = [
     id: "soil",
     name: "Cavern Rock Base & Stream",
     src: "/layers/soil.png",
-    zIndex: 20, // Must be behind father and kids so their bodies are visible!
-    depth: 0.03,
+    zIndex: 20, // Ground behind father and boys
+    depth: 0.02,
     blendMode: "normal",
     description: "Crystalline cave bedrock and luminous subterranean stream running along the floor.",
-  },
-  {
-    id: "smoke",
-    name: "Atmospheric Thermal Mist",
-    src: "/layers/smoke.png",
-    zIndex: 25,
-    depth: 0.04,
-    blendMode: "screen",
-    opacity: 0.85,
-    is2x: true,
-    description: "Ethereal hydrothermal smoke drifting gently across the subterranean cave.",
   },
   {
     id: "father",
     name: "The Guiding Father",
     src: "/layers/father.png",
-    zIndex: 30, // Standing on the ground in front of the rock base
-    depth: 0.06,
+    zIndex: 30, // Standing on the ground
+    depth: 0.04,
     blendMode: "normal",
     description: "Cosmic protector guiding his sons with an ocular chest core and rainbow energy tendrils.",
+  },
+  {
+    id: "smoke",
+    name: "Atmospheric Thermal Mist",
+    src: "/layers/smoke.png",
+    zIndex: 32, // Behind the hands of the kids (kids are zIndex 40 and 41)
+    depth: 0, // Static: DOES NOT MOVE
+    blendMode: "screen",
+    opacity: 0.85,
+    is2x: true,
+    description: "Ethereal hydrothermal smoke resting statically behind the kids' hands.",
   },
   {
     id: "leaf",
     name: "Warm Autumn Leaves",
     src: "/layers/leaf.png",
-    zIndex: 35,
-    depth: 0.12,
+    zIndex: 35, // Floating leaves
+    depth: 0.08,
     blendMode: "normal",
     description: "Three warm, impossible organic forms floating in the dark ocean cave.",
   },
   {
     id: "right-kid",
-    name: "Twin Brother (Left Silhouette)",
+    name: "Twin Brother (Left in view)",
     src: "/layers/right kid.png",
-    zIndex: 40, // In front of the soil bed
-    depth: 0.09,
+    zIndex: 40, // Foreground kid
+    depth: 0.06,
     blendMode: "normal",
-    description: "First twin son, holding hands to harmonize bioluminescent light energy.",
+    description: "Twin son holding hands, with glowing head and chest core.",
   },
   {
     id: "left-kid",
-    name: "Twin Brother (Right Silhouette)",
+    name: "Twin Brother (Right in view)",
     src: "/layers/left kid.png",
-    zIndex: 41, // In front of the soil bed
-    depth: 0.09,
+    zIndex: 41, // Foreground kid
+    depth: 0.06,
     blendMode: "normal",
-    description: "Second twin son, projecting light towards the warm leaf organisms.",
+    description: "Twin son projecting light towards the warm leaf organisms.",
   },
 ];

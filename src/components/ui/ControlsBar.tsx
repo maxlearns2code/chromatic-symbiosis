@@ -2,20 +2,15 @@
 
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
-import { Volume2, VolumeX, Layers, Compass, Maximize2, Minimize2, Info } from "lucide-react";
+import { Volume2, VolumeX, Compass, Maximize2, Minimize2 } from "lucide-react";
 
-interface ControlsBarProps {
-  isExploded: boolean;
-  onToggleExploded: () => void;
-}
-
-export function ControlsBar({ isExploded, onToggleExploded }: ControlsBarProps) {
+export function ControlsBar() {
   const [isPlayingAudio, setIsPlayingAudio] = useState(false);
   const [isFullscreen, setIsFullscreen] = useState(false);
   const audioContextRef = useRef<AudioContext | null>(null);
   const gainNodeRef = useRef<GainNode | null>(null);
 
-  // Synthesize an ambient deep cosmic drone using Web Audio API (Zero external MP3 needed!)
+  // Ambient synthesized deep cosmic drone using Web Audio API
   const toggleAudio = () => {
     if (!audioContextRef.current) {
       const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
@@ -27,22 +22,18 @@ export function ControlsBar({ isExploded, onToggleExploded }: ControlsBarProps) 
       masterGain.connect(ctx.destination);
       gainNodeRef.current = masterGain;
 
-      // Deep root cosmic bass oscillator
       const osc1 = ctx.createOscillator();
       osc1.type = "sine";
-      osc1.frequency.setValueAtTime(55, ctx.currentTime); // A1 note
+      osc1.frequency.setValueAtTime(55, ctx.currentTime);
 
-      // Warm atmospheric fifth
       const osc2 = ctx.createOscillator();
       osc2.type = "triangle";
-      osc2.frequency.setValueAtTime(82.4, ctx.currentTime); // E2 note
+      osc2.frequency.setValueAtTime(82.4, ctx.currentTime);
 
-      // Gentle sub-harmonic resonance
       const osc3 = ctx.createOscillator();
       osc3.type = "sine";
-      osc3.frequency.setValueAtTime(110, ctx.currentTime); // A2 harmonic
+      osc3.frequency.setValueAtTime(110, ctx.currentTime);
 
-      // Filter for deep underwater cavern dampening
       const filter = ctx.createBiquadFilter();
       filter.type = "lowpass";
       filter.frequency.setValueAtTime(260, ctx.currentTime);
@@ -58,11 +49,9 @@ export function ControlsBar({ isExploded, onToggleExploded }: ControlsBarProps) 
     }
 
     if (isPlayingAudio) {
-      // Fade out
       gainNodeRef.current?.gain.exponentialRampToValueAtTime(0.0001, audioContextRef.current.currentTime + 1);
       setIsPlayingAudio(false);
     } else {
-      // Fade in smoothly
       if (audioContextRef.current.state === "suspended") {
         audioContextRef.current.resume();
       }
@@ -92,32 +81,19 @@ export function ControlsBar({ isExploded, onToggleExploded }: ControlsBarProps) 
   }, []);
 
   return (
-    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-80 flex items-center gap-2 p-1.5 rounded-full bg-zinc-950/80 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.8)] text-zinc-300">
-      {/* 3D Layer Exploder Toggle */}
-      <button
-        onClick={onToggleExploded}
-        className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full text-xs font-medium transition-all ${
-          isExploded
-            ? "bg-purple-600 text-white shadow-[0_0_15px_rgba(168,85,247,0.7)]"
-            : "hover:bg-white/10 text-zinc-300"
-        }`}
-        title="Toggle 3D Layer Inspector"
-      >
-        <Layers className="w-3.5 h-3.5" />
-        <span>{isExploded ? "Reset View" : "3D Layers"}</span>
-      </button>
-
+    <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-80 flex items-center gap-2 p-1.5 rounded-full bg-zinc-950/85 backdrop-blur-xl border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.8)] text-zinc-300">
       {/* Audio Ambient Drone Toggle */}
       <button
         onClick={toggleAudio}
-        className={`p-2 rounded-full transition-all ${
+        className={`flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-medium transition-all ${
           isPlayingAudio
             ? "bg-fuchsia-600/80 text-white shadow-[0_0_12px_rgba(217,70,239,0.7)]"
             : "hover:bg-white/10 text-zinc-400 hover:text-white"
         }`}
         title={isPlayingAudio ? "Mute Cosmic Drone" : "Play Ambient Cosmic Drone"}
       >
-        {isPlayingAudio ? <Volume2 className="w-4 h-4" /> : <VolumeX className="w-4 h-4" />}
+        {isPlayingAudio ? <Volume2 className="w-3.5 h-3.5" /> : <VolumeX className="w-3.5 h-3.5" />}
+        <span className="text-[11px] hidden sm:inline">{isPlayingAudio ? "Mute" : "Sound"}</span>
       </button>
 
       {/* Fullscreen Toggle */}
