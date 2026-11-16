@@ -24,13 +24,8 @@ export function SlideOriginal() {
 
       {/* Main Collage Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Left Column: Full Master Movie Poster (Identical to Main Page) */}
+        {/* Left Column: Full Master Movie Poster (Clean, no technical header) */}
         <div className="lg:col-span-5 flex flex-col gap-3 bg-zinc-950/80 p-4 rounded-2xl border border-purple-500/20 shadow-xl">
-          <div className="flex items-center justify-between text-xs text-purple-300 font-mono">
-            <span className="font-semibold">Master Composite</span>
-            <span className="text-zinc-500">1043 × 1477 px</span>
-          </div>
-
           {/* Exact Poster Replica matching the Main Page */}
           <div className="relative aspect-[1043/1477] w-full rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl bg-[#06040d]">
             {POSTER_LAYERS.map((layer) => {
@@ -65,7 +60,7 @@ export function SlideOriginal() {
             <TypographyOverlay />
           </div>
 
-          <p className="text-xs text-zinc-400 italic">
+          <p className="text-xs text-zinc-400 italic text-center">
             &ldquo;To unlock the portal to a new world, a father must guide his sons through the mystery of light.&rdquo;
           </p>
         </div>
