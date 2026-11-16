@@ -3,7 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { POSTER_LAYERS, LayerConfig } from "@/data/layersConfig";
-import { Layers, Eye, Sparkles } from "lucide-react";
+import { TypographyOverlay } from "@/components/poster/TypographyOverlay";
+import { Layers, Sparkles } from "lucide-react";
 
 export function SlideOriginal() {
   const [selectedLayer, setSelectedLayer] = useState<LayerConfig | null>(null);
@@ -26,33 +27,46 @@ export function SlideOriginal() {
 
       {/* Main Collage Layout */}
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-        {/* Left Column: Full Master Movie Poster */}
+        {/* Left Column: Full Master Movie Poster (Identical to Main Page) */}
         <div className="lg:col-span-5 flex flex-col gap-3 bg-zinc-950/80 p-4 rounded-2xl border border-purple-500/20 shadow-xl">
           <div className="flex items-center justify-between text-xs text-purple-300 font-mono">
             <span className="font-semibold">Master Composite</span>
             <span className="text-zinc-500">1043 × 1477 px</span>
           </div>
 
-          <div className="relative aspect-[1043/1477] w-full rounded-xl overflow-hidden border border-white/10 shadow-2xl group">
-            {/* Render stacked layers to recreate the master poster */}
-            {POSTER_LAYERS.map((layer) => (
-              <div
-                key={layer.id}
-                style={{ zIndex: layer.zIndex, mixBlendMode: layer.blendMode || "normal" }}
-                className="absolute inset-0 w-full h-full"
-              >
-                <Image
-                  src={layer.src}
-                  alt={layer.name}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 1024px) 100vw, 450px"
-                />
-              </div>
-            ))}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-50 flex items-end p-4">
-              <span className="text-xs text-zinc-200 font-medium">Original Hand-Composited Movie Poster</span>
-            </div>
+          {/* Exact Poster Replica matching the Main Page */}
+          <div className="relative aspect-[1043/1477] w-full rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl bg-[#06040d]">
+            {/* Render all stacked layers with exact offsets, blend modes, and leaf float */}
+            {POSTER_LAYERS.map((layer) => {
+              const leftPosition = layer.offsetXPercent ? `${layer.offsetXPercent}%` : "0%";
+              const isLeaf = layer.id === "leaf";
+
+              return (
+                <div
+                  key={layer.id}
+                  style={{
+                    zIndex: layer.zIndex,
+                    left: leftPosition,
+                    mixBlendMode: layer.blendMode || "normal",
+                    opacity: layer.opacity ?? 1,
+                  }}
+                  className="absolute top-0 w-full h-full pointer-events-none select-none"
+                >
+                  <div className={`relative w-full h-full ${isLeaf ? "animate-float-leaves" : ""}`}>
+                    <Image
+                      src={layer.src}
+                      alt={layer.name}
+                      fill
+                      className="object-cover w-full h-full"
+                      sizes="(max-width: 1024px) 100vw, 450px"
+                    />
+                  </div>
+                </div>
+              );
+            })}
+
+            {/* Title and Subtitle Overlay (Identical to Main Page) */}
+            <TypographyOverlay />
           </div>
 
           <p className="text-xs text-zinc-400 italic">
