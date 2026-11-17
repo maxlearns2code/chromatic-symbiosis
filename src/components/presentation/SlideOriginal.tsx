@@ -1,11 +1,45 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { POSTER_LAYERS } from "@/data/layersConfig";
 import { TypographyOverlay } from "@/components/poster/TypographyOverlay";
-import { Layers, Sparkles } from "lucide-react";
+import { Sparkles } from "lucide-react";
 
 export function SlideOriginal() {
+  const rightColRef = useRef<HTMLDivElement>(null);
+  const [targetHeight, setTargetHeight] = useState<number | undefined>(undefined);
+  const [targetWidth, setTargetWidth] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (rightColRef.current && window.innerWidth >= 1024) {
+        const h = rightColRef.current.offsetHeight;
+        if (h > 0) {
+          setTargetHeight(h);
+          setTargetWidth(Math.round(h * (1043 / 1477)));
+        }
+      } else {
+        setTargetHeight(undefined);
+        setTargetWidth(undefined);
+      }
+    };
+
+    updateSize();
+
+    let observer: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined" && rightColRef.current) {
+      observer = new ResizeObserver(updateSize);
+      observer.observe(rightColRef.current);
+    }
+
+    window.addEventListener("resize", updateSize);
+    return () => {
+      if (observer) observer.disconnect();
+      window.removeEventListener("resize", updateSize);
+    };
+  }, []);
+
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 pb-16">
       {/* Slide Title & Concept Header */}
@@ -22,10 +56,16 @@ export function SlideOriginal() {
         </p>
       </div>
 
-      {/* Main Collage Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-[395px_1fr] gap-6 items-start">
+      {/* Main Collage Layout: Flex row on desktop for pixel-perfect top & bottom alignment */}
+      <div className="flex flex-col lg:flex-row gap-6 items-start justify-center">
         {/* Left Column: Full Master Movie Poster */}
-        <div className="relative aspect-[1043/1477] w-full max-w-[395px] mx-auto lg:mx-0 rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl bg-[#06040d]">
+        <div
+          style={{
+            height: targetHeight ? `${targetHeight}px` : undefined,
+            width: targetWidth ? `${targetWidth}px` : undefined,
+          }}
+          className="relative aspect-[1043/1477] w-full max-w-[390px] mx-auto lg:mx-0 shrink-0 rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl bg-[#06040d]"
+        >
           {POSTER_LAYERS.map((layer) => {
             const leftPosition = layer.offsetXPercent ? `${layer.offsetXPercent}%` : "0%";
             const isLeaf = layer.id === "leaf";
@@ -58,8 +98,8 @@ export function SlideOriginal() {
           <TypographyOverlay />
         </div>
 
-        {/* Right Column: Static Showcase of the Layers & Elements Used */}
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+        {/* Right Column: 8 Static Layer Cards */}
+        <div ref={rightColRef} className="flex-1 grid grid-cols-2 sm:grid-cols-4 gap-3 w-full">
           {POSTER_LAYERS.map((layer) => (
             <div
               key={layer.id}

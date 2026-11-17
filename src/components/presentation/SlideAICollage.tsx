@@ -1,9 +1,40 @@
 "use client";
 
+import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
 import { Sparkles, Bot, Wand2 } from "lucide-react";
 
 export function SlideAICollage() {
+  const rightColRef = useRef<HTMLDivElement>(null);
+  const [rightHeight, setRightHeight] = useState<number | undefined>(undefined);
+
+  useEffect(() => {
+    const updateSize = () => {
+      if (rightColRef.current && window.innerWidth >= 1024) {
+        const h = rightColRef.current.offsetHeight;
+        if (h > 0) {
+          setRightHeight(h);
+        }
+      } else {
+        setRightHeight(undefined);
+      }
+    };
+
+    updateSize();
+
+    let observer: ResizeObserver | null = null;
+    if (typeof ResizeObserver !== "undefined" && rightColRef.current) {
+      observer = new ResizeObserver(updateSize);
+      observer.observe(rightColRef.current);
+    }
+
+    window.addEventListener("resize", updateSize);
+    return () => {
+      if (observer) observer.disconnect();
+      window.removeEventListener("resize", updateSize);
+    };
+  }, []);
+
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 pb-16">
       {/* Header */}
@@ -16,56 +47,65 @@ export function SlideAICollage() {
           Collage of <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-purple-400">AI-Assisted Designs</span>
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Exploring alternative visual directions with generative AI—testing prompt iterations for alien bioluminescence, cryo-ocean caverns, and living portal dynamics.
+          I asked AI to redo my original poster and create an animated version of it—exploring how generative models interpret the bioluminescent alien family, the dimensional tree portal, and latent motion within Saturn&apos;s frozen ocean world.
         </p>
       </div>
 
       {/* AI Designs Showcase Collage */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-        {/* Left Column: Full AI-Generated Poster Variant */}
-        <div className="lg:col-span-5 flex flex-col gap-3">
-          <div className="relative aspect-[1086/1448] w-full max-w-[360px] mx-auto lg:mx-0 rounded-xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-zinc-950">
+      <div className="flex flex-col lg:flex-row gap-8 items-start justify-center">
+        {/* Left Column: Full AI-Generated Poster Variant (Aligned to match right column height) */}
+        <div
+          style={{ height: rightHeight ? `${rightHeight}px` : undefined }}
+          className="w-full max-w-[360px] mx-auto lg:mx-0 flex flex-col justify-between shrink-0"
+        >
+          <div
+            style={{
+              maxHeight: rightHeight ? `${rightHeight - 74}px` : undefined,
+              aspectRatio: "1086 / 1448",
+            }}
+            className="relative w-full rounded-xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-zinc-950 shrink-0"
+          >
             <Image
               src="/ai-designs/ai-poster-01.png"
-              alt="AI Reimagined Poster Variant"
+              alt="AI Recreated Poster"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 360px"
               priority
             />
           </div>
-          <div className="flex flex-col gap-1 max-w-[360px] px-1">
+          <div className="flex flex-col gap-1 pt-2">
             <h3 className="text-sm font-bold text-white flex items-center gap-2">
               <Bot className="w-4 h-4 text-cyan-400" />
-              <span>AI Reimagined Poster Variant</span>
+              <span>AI-Recreated Poster</span>
             </h3>
             <p className="text-xs text-zinc-400 leading-relaxed">
-              Full generative composition exploring alternative atmospheric depth, bioluminescent refraction, and planetary cavern lighting.
+              I asked AI to redo my handcrafted movie poster as a complete generative composite with alternative atmospheric depth and lighting.
             </p>
           </div>
         </div>
 
         {/* Right Column: AI Concept Exploration GIF & Prompt Breakdown */}
-        <div className="lg:col-span-7 flex flex-col gap-5">
+        <div ref={rightColRef} className="flex-1 flex flex-col gap-5 w-full">
           {/* Concept Exploration Animation Card */}
-          <div className="flex flex-col gap-3">
+          <div className="flex flex-col gap-2">
             <div className="relative aspect-[358/265] w-full max-w-[360px] mx-auto lg:mx-0 rounded-xl overflow-hidden border border-fuchsia-500/30 shadow-2xl bg-zinc-950">
               <Image
                 src="/ai-designs/ai-concept-exploration.gif"
-                alt="AI Concept Exploration Animation"
+                alt="AI Animated Poster Version"
                 fill
                 unoptimized
                 className="object-cover"
                 sizes="(max-width: 640px) 100vw, 360px"
               />
             </div>
-            <div className="flex flex-col gap-1 max-w-[360px] px-1">
+            <div className="flex flex-col gap-1 max-w-[360px] pt-1">
               <h3 className="text-sm font-bold text-white flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-fuchsia-400" />
-                <span>Generative Latent Space & Motion</span>
+                <span>AI-Animated Poster Version</span>
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed">
-                Animated sequence exploring iterative character dynamics, energy vortex forms, and fluid lighting transitions in the latent space.
+                I asked AI to create an animated version of the poster, exploring latent motion dynamics, swirling portal energy, and fluid character lighting.
               </p>
             </div>
           </div>
@@ -88,7 +128,7 @@ export function SlideAICollage() {
                 <span>Generative Synthesis</span>
               </div>
               <p className="text-xs text-zinc-300 leading-relaxed">
-                AI provided rapid visual divergence and exotic texture possibilities, while manual Photoshop layering was essential to preserve narrative clarity and interactive web depth.
+                AI provided rapid visual divergence and fluid animation ideas, but lacked the emotional nuance and discrete multi-plane layer control of manual Photoshop craftsmanship.
               </p>
             </div>
           </div>
