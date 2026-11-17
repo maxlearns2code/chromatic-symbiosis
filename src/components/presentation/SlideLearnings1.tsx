@@ -13,34 +13,18 @@ export function SlideLearnings1() {
     {
       number: "02",
       category: "Photomontage Craft",
-      title: "Managing Complex Multi-Image Compositing",
-      highlight: "Harmonizing too many disparate picture sources",
+      title: "Managing Complex Multi-Picture Compositing",
+      highlight: "Harmonizing too many disparate photo sources",
       takeaway:
         "My greatest technical hurdle was building a photomontage with so many separate pictures. Blending them into a single cohesive cavern required relentless masking, edge feathering, and matching ambient light spill.",
     },
     {
       number: "03",
-      category: "Worldbuilding",
-      title: "Bioluminescent Light-Wave Language",
-      highlight: "Communication without sunlight",
+      category: "Visual & Lore Synthesis",
+      title: "Real Macro Leaves & Character Biology",
+      highlight: "Anchoring sci-fi worldbuilding in earthly biology",
       takeaway:
-        "In a dark sub-ice ocean cavern, characters project colored light frequencies and thermal pulses to communicate and navigate instead of spoken words.",
-    },
-    {
-      number: "04",
-      category: "Character Design",
-      title: "Twin Silhouette Differentiation",
-      highlight: "Harmony without mirror duplication",
-      takeaway:
-        "Hand-sculpted distinct limb poses, head crests, and color accents so the twin brothers convey harmonic unity while remaining distinctly recognizable individuals.",
-    },
-    {
-      number: "05",
-      category: "Mixed-Media Integration",
-      title: "Macro Leaf Photography into Alien Lore",
-      highlight: "Anchoring sci-fi in earthly biology",
-      takeaway:
-        "Digitized real autumn leaf photographs and isolated their veins of light to visually connect terrestrial memories with the bioluminescent physiology of the twins.",
+        "Digitized real autumn leaf photographs and isolated light veins to mirror the twins' bioluminescent conduits, while hand-sculpting distinct poses so the brothers convey unity without mirror duplication.",
     },
   ];
 
@@ -58,24 +42,18 @@ export function SlideLearnings1() {
           </span>
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Reflections on narrowing down an overwhelming world into a focused story, and overcoming the challenges of a multi-picture photomontage.
+          Three core reflections on narrowing down an overwhelming world into a focused story, photomontage craft, and visual synthesis.
         </p>
       </div>
 
-      {/* Minimalist Cards Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        {learnings.map((item, index) => {
-          const isFeatured = index === 0;
-
-          return (
-            <div
-              key={index}
-              className={`p-6 rounded-2xl bg-zinc-950/60 border border-zinc-800/80 hover:border-purple-500/30 transition-all flex flex-col gap-2.5 ${
-                isFeatured
-                  ? "md:col-span-2 border-purple-500/20 bg-gradient-to-br from-zinc-950/80 via-purple-950/15 to-zinc-950/80"
-                  : ""
-              }`}
-            >
+      {/* 3-Column Minimalist Grid */}
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+        {learnings.map((item, index) => (
+          <div
+            key={index}
+            className="p-6 rounded-2xl bg-zinc-950/60 border border-zinc-800/80 hover:border-purple-500/30 transition-all flex flex-col justify-between gap-4"
+          >
+            <div className="flex flex-col gap-2.5">
               {/* Category & Index */}
               <div className="flex items-center justify-between text-xs font-mono">
                 <span className="uppercase tracking-wider text-purple-300/80 font-medium">
@@ -93,14 +71,14 @@ export function SlideLearnings1() {
               <div className="text-xs sm:text-sm font-medium text-purple-200">
                 {item.highlight}
               </div>
-
-              {/* Takeaway */}
-              <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed pt-1 border-t border-zinc-900">
-                {item.takeaway}
-              </p>
             </div>
-          );
-        })}
+
+            {/* Takeaway */}
+            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed pt-3 border-t border-zinc-900">
+              {item.takeaway}
+            </p>
+          </div>
+        ))}
       </div>
     </div>
   );
