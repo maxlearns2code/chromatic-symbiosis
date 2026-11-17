@@ -1,17 +1,16 @@
 "use client";
 
 import Image from "next/image";
-import { Sparkles, Bot, Wand2, FileText, Film, Globe } from "lucide-react";
+import { Sparkles, Wand2 } from "lucide-react";
 
 export function SlideAICollage() {
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-6 pb-16">
-      {/* Header */}
+      {/* Minimalist Header */}
       <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-cyan-400">
-          <Bot className="w-4 h-4" />
-          <span>Slide 3 of 4 • AI-Assisted Divergence</span>
-        </div>
+        <span className="text-xs font-mono uppercase tracking-widest text-cyan-400">
+          Slide 03 • AI-Assisted Divergence
+        </span>
         <h2 className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-white tracking-tight">
           Collage of{" "}
           <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-purple-400">
@@ -39,10 +38,6 @@ export function SlideAICollage() {
           </div>
           <div className="p-4 flex flex-col gap-2 flex-1 justify-between bg-zinc-950/95 border-t border-cyan-500/20">
             <div className="flex flex-col gap-1.5">
-              <div className="flex items-center gap-1.5 text-[10px] font-mono text-cyan-400 uppercase tracking-wider font-semibold">
-                <FileText className="w-3.5 h-3.5" />
-                <span>Text-Only Intent Prompt</span>
-              </div>
               <h3 className="text-base font-bold text-white leading-snug">
                 From Letter of Intent
               </h3>
@@ -71,10 +66,6 @@ export function SlideAICollage() {
           </div>
           <div className="p-4 flex flex-col gap-2 flex-1 justify-between bg-zinc-950/95 border-t border-purple-500/20">
             <div className="flex flex-col gap-1.5">
-              <div className="flex items-center gap-1.5 text-[10px] font-mono text-purple-400 uppercase tracking-wider font-semibold">
-                <Bot className="w-3.5 h-3.5" />
-                <span>Original Poster Redesign</span>
-              </div>
               <h3 className="text-base font-bold text-white leading-snug">
                 AI Poster Reinterpretation
               </h3>
@@ -103,10 +94,6 @@ export function SlideAICollage() {
               />
             </div>
             <div className="p-3.5 flex flex-col gap-1.5 bg-zinc-950/95 border-t border-amber-500/20">
-              <div className="flex items-center gap-1.5 text-[10px] font-mono text-amber-400 uppercase tracking-wider font-semibold">
-                <Globe className="w-3.5 h-3.5" />
-                <span>Worldbuilding Panorama</span>
-              </div>
               <h3 className="text-sm font-bold text-white leading-snug">
                 Cinematic Sub-Ice Landscape
               </h3>
@@ -129,10 +116,6 @@ export function SlideAICollage() {
               />
             </div>
             <div className="p-3.5 flex flex-col gap-1.5 bg-zinc-950/95 border-t border-fuchsia-500/20">
-              <div className="flex items-center gap-1.5 text-[10px] font-mono text-fuchsia-400 uppercase tracking-wider font-semibold">
-                <Film className="w-3.5 h-3.5" />
-                <span>Latent Motion Dynamics</span>
-              </div>
               <h3 className="text-sm font-bold text-white leading-snug">
                 AI-Animated Motion Sequence
               </h3>
