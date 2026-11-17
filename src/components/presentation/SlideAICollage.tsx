@@ -36,19 +36,13 @@ export function SlideAICollage() {
               priority
             />
           </div>
-          <div className="p-4 flex flex-col gap-2 flex-1 justify-between bg-zinc-950/95 border-t border-cyan-500/20">
-            <div className="flex flex-col gap-1.5">
-              <h3 className="text-base font-bold text-white leading-snug">
-                From Letter of Intent
-              </h3>
-              <p className="text-xs text-zinc-300 leading-relaxed">
-                Generated purely from my written concept without reference images. Remarkably, AI captured the central family silhouette, bioluminescent cavern, and energy focus very close to my original poster.
-              </p>
-            </div>
-            <div className="pt-2 border-t border-zinc-800/80 flex items-center gap-1.5 text-[11px] font-medium text-cyan-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shrink-0" />
-              <span>Zero-shot concept fidelity</span>
-            </div>
+          <div className="p-4 flex flex-col gap-1.5 flex-1 bg-zinc-950/95 border-t border-cyan-500/20">
+            <h3 className="text-base font-bold text-white leading-snug">
+              From Letter of Intent
+            </h3>
+            <p className="text-xs text-zinc-300 leading-relaxed">
+              Generated purely from my written concept without reference images. Remarkably, AI captured the central family silhouette, bioluminescent cavern, and energy focus very close to my original poster.
+            </p>
           </div>
         </div>
 
@@ -64,19 +58,13 @@ export function SlideAICollage() {
               priority
             />
           </div>
-          <div className="p-4 flex flex-col gap-2 flex-1 justify-between bg-zinc-950/95 border-t border-purple-500/20">
-            <div className="flex flex-col gap-1.5">
-              <h3 className="text-base font-bold text-white leading-snug">
-                AI Poster Reinterpretation
-              </h3>
-              <p className="text-xs text-zinc-300 leading-relaxed">
-                I asked AI to recreate my handcrafted poster as a full generative composition, exploring alternative caustic lighting, fluid membrane anatomy, and saturated energy refractions.
-              </p>
-            </div>
-            <div className="pt-2 border-t border-zinc-800/80 flex items-center gap-1.5 text-[11px] font-medium text-purple-300">
-              <span className="w-1.5 h-1.5 rounded-full bg-purple-400 shrink-0" />
-              <span>Full composition reimagining</span>
-            </div>
+          <div className="p-4 flex flex-col gap-1.5 flex-1 bg-zinc-950/95 border-t border-purple-500/20">
+            <h3 className="text-base font-bold text-white leading-snug">
+              AI Poster Reinterpretation
+            </h3>
+            <p className="text-xs text-zinc-300 leading-relaxed">
+              I asked AI to recreate my handcrafted poster as a full generative composition, exploring alternative caustic lighting, fluid membrane anatomy, and saturated energy refractions.
+            </p>
           </div>
         </div>
 
