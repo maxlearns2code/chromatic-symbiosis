@@ -4,27 +4,27 @@ export function SlideLearnings1() {
   const learnings = [
     {
       number: "01",
-      category: "Narrative & Intent",
-      title: "From Technical Diagram to Emotional Journey",
-      highlight: "Personal inspiration over cold diagrams",
+      category: "Conceptual Scope",
+      title: "Narrowing Down an Overwhelming World",
+      highlight: "Focusing on intimate family story over massive worldbuilding",
       takeaway:
-        "Shifted from a sterile astronomical cross-section of Saturn's ice moon to an intimate father-son adventure, inspired by conversations about autumn leaves with my young twin boys.",
+        "Building an entire planetary world proved too vast and overwhelming. I chose to narrow the scope down to an intimate, emotional core: a father guiding his young twin sons through the mystery of light.",
     },
     {
       number: "02",
+      category: "Photomontage Craft",
+      title: "Managing Complex Multi-Image Compositing",
+      highlight: "Harmonizing too many disparate picture sources",
+      takeaway:
+        "My greatest technical hurdle was building a photomontage with so many separate pictures. Blending them into a single cohesive cavern required relentless masking, edge feathering, and matching ambient light spill.",
+    },
+    {
+      number: "03",
       category: "Worldbuilding",
       title: "Bioluminescent Light-Wave Language",
       highlight: "Communication without sunlight",
       takeaway:
         "In a dark sub-ice ocean cavern, characters project colored light frequencies and thermal pulses to communicate and navigate instead of spoken words.",
-    },
-    {
-      number: "03",
-      category: "Photoshop Craft",
-      title: "Non-Destructive Precision Compositing",
-      highlight: "Complex multi-element masking",
-      takeaway:
-        "Composited intricate organic silhouettes against dark cosmic space using soft layer masks, gradient feathering, and subtle ambient color spill.",
     },
     {
       number: "04",
@@ -58,7 +58,7 @@ export function SlideLearnings1() {
           </span>
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Five core takeaways covering Photoshop craftsmanship, photo compositing, and narrative worldbuilding.
+          Reflections on narrowing down an overwhelming world into a focused story, and overcoming the challenges of a multi-picture photomontage.
         </p>
       </div>
 
