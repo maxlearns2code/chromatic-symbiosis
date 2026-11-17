@@ -1,40 +1,9 @@
 "use client";
 
-import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
-import { Sparkles, Bot, Wand2 } from "lucide-react";
+import { Sparkles, Bot, Wand2, FileText, Film } from "lucide-react";
 
 export function SlideAICollage() {
-  const rightColRef = useRef<HTMLDivElement>(null);
-  const [rightHeight, setRightHeight] = useState<number | undefined>(undefined);
-
-  useEffect(() => {
-    const updateSize = () => {
-      if (rightColRef.current && window.innerWidth >= 1024) {
-        const h = rightColRef.current.offsetHeight;
-        if (h > 0) {
-          setRightHeight(h);
-        }
-      } else {
-        setRightHeight(undefined);
-      }
-    };
-
-    updateSize();
-
-    let observer: ResizeObserver | null = null;
-    if (typeof ResizeObserver !== "undefined" && rightColRef.current) {
-      observer = new ResizeObserver(updateSize);
-      observer.observe(rightColRef.current);
-    }
-
-    window.addEventListener("resize", updateSize);
-    return () => {
-      if (observer) observer.disconnect();
-      window.removeEventListener("resize", updateSize);
-    };
-  }, []);
-
   return (
     <div className="w-full max-w-6xl mx-auto flex flex-col gap-8 pb-16">
       {/* Header */}
@@ -47,74 +16,104 @@ export function SlideAICollage() {
           Collage of <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-fuchsia-400 to-purple-400">AI-Assisted Designs</span>
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          I asked AI to redo my original poster and create an animated version of it—exploring how generative models interpret the bioluminescent alien family, the dimensional tree portal, and latent motion within Saturn&apos;s frozen ocean world.
+          For this exercise, I asked AI to generate designs based on my written letter of intent (which proved remarkably close to my original concept), redo my handcrafted poster, and create an animated version exploring motion in the cryo-ocean world.
         </p>
       </div>
 
       {/* AI Designs Showcase Collage */}
-      <div className="flex flex-col lg:flex-row gap-8 items-start justify-center">
-        {/* Left Column: Full AI-Generated Poster Variant (Aligned to match right column height) */}
-        <div
-          style={{ height: rightHeight ? `${rightHeight}px` : undefined }}
-          className="w-full max-w-[360px] mx-auto lg:mx-0 flex flex-col justify-between shrink-0"
-        >
-          <div
-            style={{
-              maxHeight: rightHeight ? `${rightHeight - 74}px` : undefined,
-              aspectRatio: "1086 / 1448",
-            }}
-            className="relative w-full rounded-xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-zinc-950 shrink-0"
-          >
-            <Image
-              src="/ai-designs/ai-poster-01.png"
-              alt="AI Recreated Poster"
-              fill
-              className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 360px"
-              priority
-            />
+      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
+        {/* Left Column: 2 Poster Comparisons (Letter of Intent vs Redone Poster) */}
+        <div className="lg:col-span-7 grid grid-cols-1 sm:grid-cols-2 gap-4">
+          {/* Variant A: Generated from Letter of Intent */}
+          <div className="flex flex-col rounded-xl overflow-hidden border border-cyan-500/30 bg-zinc-950/80 shadow-xl">
+            <div className="relative aspect-[2/3] w-full bg-black/80 overflow-hidden">
+              <Image
+                src="/ai-designs/ai-poster-from-letter.png"
+                alt="AI Poster Generated from Letter of Intent"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 320px"
+                priority
+              />
+            </div>
+            <div className="p-3 flex flex-col gap-1.5 flex-1 justify-between bg-zinc-950/90">
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] font-mono text-cyan-400 uppercase tracking-wider font-semibold flex items-center gap-1">
+                  <FileText className="w-3 h-3" />
+                  <span>From Letter of Intent</span>
+                </span>
+                <h3 className="text-sm font-bold text-white leading-snug">
+                  Text-Only Prompt Iteration
+                </h3>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  Generated purely from the written concept without reference images. Remarkably, AI captured the central energy focus, family silhouettes, and bioluminescent cavern mood very close to my original poster.
+                </p>
+              </div>
+            </div>
           </div>
-          <div className="flex flex-col gap-1 pt-2">
-            <h3 className="text-sm font-bold text-white flex items-center gap-2">
-              <Bot className="w-4 h-4 text-cyan-400" />
-              <span>AI-Recreated Poster</span>
-            </h3>
-            <p className="text-xs text-zinc-400 leading-relaxed">
-              I asked AI to redo my handcrafted movie poster as a complete generative composite with alternative atmospheric depth and lighting.
-            </p>
+
+          {/* Variant B: Redone from Handcrafted Poster */}
+          <div className="flex flex-col rounded-xl overflow-hidden border border-purple-500/30 bg-zinc-950/80 shadow-xl">
+            <div className="relative aspect-[2/3] w-full bg-black/80 overflow-hidden">
+              <Image
+                src="/ai-designs/ai-poster-01.png"
+                alt="AI Recreated Poster from Original Poster"
+                fill
+                className="object-cover"
+                sizes="(max-width: 640px) 100vw, 320px"
+                priority
+              />
+            </div>
+            <div className="p-3 flex flex-col gap-1.5 flex-1 justify-between bg-zinc-950/90">
+              <div className="flex flex-col gap-1">
+                <span className="text-[10px] font-mono text-purple-400 uppercase tracking-wider font-semibold flex items-center gap-1">
+                  <Bot className="w-3 h-3" />
+                  <span>From Original Poster</span>
+                </span>
+                <h3 className="text-sm font-bold text-white leading-snug">
+                  AI-Recreated Poster Variant
+                </h3>
+                <p className="text-xs text-zinc-400 leading-relaxed">
+                  I asked AI to redo my handcrafted poster as a full generative composition, exploring alternative cosmic caustic lighting, fluid membrane refractions, and alien anatomy.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Right Column: AI Concept Exploration GIF & Prompt Breakdown */}
-        <div ref={rightColRef} className="flex-1 flex flex-col gap-5 w-full">
-          {/* Concept Exploration Animation Card */}
-          <div className="flex flex-col gap-2">
-            <div className="relative aspect-[358/265] w-full max-w-[360px] mx-auto lg:mx-0 rounded-xl overflow-hidden border border-fuchsia-500/30 shadow-2xl bg-zinc-950">
+        {/* Right Column: AI Animated Sequence & Prompt Engineering */}
+        <div className="lg:col-span-5 flex flex-col justify-between gap-4">
+          {/* Animated GIF Card */}
+          <div className="flex flex-col rounded-xl overflow-hidden border border-fuchsia-500/30 bg-zinc-950/80 shadow-xl">
+            <div className="relative aspect-[358/265] w-full bg-black overflow-hidden">
               <Image
                 src="/ai-designs/ai-concept-exploration.gif"
                 alt="AI Animated Poster Version"
                 fill
                 unoptimized
                 className="object-cover"
-                sizes="(max-width: 640px) 100vw, 360px"
+                sizes="(max-width: 1024px) 100vw, 420px"
               />
             </div>
-            <div className="flex flex-col gap-1 max-w-[360px] pt-1">
-              <h3 className="text-sm font-bold text-white flex items-center gap-2">
-                <Sparkles className="w-4 h-4 text-fuchsia-400" />
-                <span>AI-Animated Poster Version</span>
+            <div className="p-3 flex flex-col gap-1 bg-zinc-950/90">
+              <span className="text-[10px] font-mono text-fuchsia-400 uppercase tracking-wider font-semibold flex items-center gap-1">
+                <Film className="w-3 h-3" />
+                <span>AI-Animated Version</span>
+              </span>
+              <h3 className="text-sm font-bold text-white leading-snug">
+                Latent Motion Dynamics
               </h3>
               <p className="text-xs text-zinc-400 leading-relaxed">
-                I asked AI to create an animated version of the poster, exploring latent motion dynamics, swirling portal energy, and fluid character lighting.
+                I asked AI to create an animated sequence of the poster, exploring latent motion dynamics, swirling portal energy, and fluid character lighting.
               </p>
             </div>
           </div>
 
-          {/* Prompt Engineering & Design Synthesis Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
-            <div className="p-4 rounded-xl bg-zinc-950/80 border border-cyan-500/20 flex flex-col gap-2 shadow-lg">
-              <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">
-                <Wand2 className="w-3.5 h-3.5" />
+          {/* Prompt & Synthesis Insights */}
+          <div className="flex flex-col gap-3">
+            <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-cyan-500/20 flex flex-col gap-1.5 shadow-md">
+              <div className="flex items-center gap-1.5 text-[11px] font-mono text-cyan-400 uppercase tracking-wider font-semibold">
+                <Wand2 className="w-3 h-3" />
                 <span>Prompt Exploration</span>
               </div>
               <p className="text-xs text-zinc-300 italic leading-relaxed">
@@ -122,13 +121,13 @@ export function SlideAICollage() {
               </p>
             </div>
 
-            <div className="p-4 rounded-xl bg-zinc-950/80 border border-fuchsia-500/20 flex flex-col gap-2 shadow-lg">
-              <div className="flex items-center gap-2 text-xs font-mono text-fuchsia-400 uppercase tracking-wider font-semibold">
-                <Sparkles className="w-3.5 h-3.5" />
+            <div className="p-3.5 rounded-xl bg-zinc-950/80 border border-fuchsia-500/20 flex flex-col gap-1.5 shadow-md">
+              <div className="flex items-center gap-1.5 text-[11px] font-mono text-fuchsia-400 uppercase tracking-wider font-semibold">
+                <Sparkles className="w-3 h-3" />
                 <span>Generative Synthesis</span>
               </div>
               <p className="text-xs text-zinc-300 leading-relaxed">
-                AI provided rapid visual divergence and fluid animation ideas, but lacked the emotional nuance and discrete multi-plane layer control of manual Photoshop craftsmanship.
+                Prompting from the letter of intent proved AI could match the core mood, while manual Photoshop layering remained essential for emotional nuance and interactive web depth.
               </p>
             </div>
           </div>
