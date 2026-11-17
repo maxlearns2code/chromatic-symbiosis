@@ -49,14 +49,14 @@ export function SlideAICollage() {
         <div className="lg:col-span-7 flex flex-col gap-6">
           {/* Concept Exploration Animation Card */}
           <div className="flex flex-col gap-3">
-            <div className="relative aspect-[358/265] w-full rounded-xl overflow-hidden border border-fuchsia-500/30 shadow-2xl bg-zinc-950">
+            <div className="relative aspect-[358/265] w-full max-w-[340px] rounded-xl overflow-hidden border border-fuchsia-500/30 shadow-2xl bg-zinc-950">
               <Image
                 src="/ai-designs/ai-concept-exploration.gif"
                 alt="AI Concept Exploration Animation"
                 fill
                 unoptimized
                 className="object-cover"
-                sizes="(max-width: 1024px) 100vw, 650px"
+                sizes="(max-width: 640px) 100vw, 340px"
               />
             </div>
             <div className="flex flex-col gap-1 px-1">
@@ -64,7 +64,7 @@ export function SlideAICollage() {
                 <Sparkles className="w-4 h-4 text-fuchsia-400" />
                 <span>Generative Latent Space & Motion Iterations</span>
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed">
+              <p className="text-xs text-zinc-400 leading-relaxed max-w-xl">
                 Animated sequence exploring iterative character dynamics, energy vortex forms, and fluid lighting transitions in the latent space.
               </p>
             </div>
