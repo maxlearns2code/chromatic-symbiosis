@@ -24,18 +24,18 @@ export function SlideAICollage() {
       <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
         {/* Left Column: Full AI-Generated Poster Variant */}
         <div className="lg:col-span-5 flex flex-col gap-3">
-          <div className="relative aspect-[1086/1448] w-full rounded-xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-zinc-950">
+          <div className="relative aspect-[1086/1448] w-full max-w-[360px] mx-auto lg:mx-0 rounded-xl overflow-hidden border border-cyan-500/30 shadow-2xl bg-zinc-950">
             <Image
               src="/ai-designs/ai-poster-01.png"
               alt="AI Reimagined Poster Variant"
               fill
               className="object-cover"
-              sizes="(max-width: 1024px) 100vw, 450px"
+              sizes="(max-width: 1024px) 100vw, 360px"
               priority
             />
           </div>
-          <div className="flex flex-col gap-1 px-1">
-            <h3 className="text-base font-bold text-white flex items-center gap-2">
+          <div className="flex flex-col gap-1 max-w-[360px] px-1">
+            <h3 className="text-sm font-bold text-white flex items-center gap-2">
               <Bot className="w-4 h-4 text-cyan-400" />
               <span>AI Reimagined Poster Variant</span>
             </h3>
@@ -46,32 +46,32 @@ export function SlideAICollage() {
         </div>
 
         {/* Right Column: AI Concept Exploration GIF & Prompt Breakdown */}
-        <div className="lg:col-span-7 flex flex-col gap-6">
+        <div className="lg:col-span-7 flex flex-col gap-5">
           {/* Concept Exploration Animation Card */}
           <div className="flex flex-col gap-3">
-            <div className="relative aspect-[358/265] w-full max-w-[340px] rounded-xl overflow-hidden border border-fuchsia-500/30 shadow-2xl bg-zinc-950">
+            <div className="relative aspect-[358/265] w-full max-w-[360px] mx-auto lg:mx-0 rounded-xl overflow-hidden border border-fuchsia-500/30 shadow-2xl bg-zinc-950">
               <Image
                 src="/ai-designs/ai-concept-exploration.gif"
                 alt="AI Concept Exploration Animation"
                 fill
                 unoptimized
                 className="object-cover"
-                sizes="(max-width: 640px) 100vw, 340px"
+                sizes="(max-width: 640px) 100vw, 360px"
               />
             </div>
-            <div className="flex flex-col gap-1 px-1">
-              <h3 className="text-base font-bold text-white flex items-center gap-2">
+            <div className="flex flex-col gap-1 max-w-[360px] px-1">
+              <h3 className="text-sm font-bold text-white flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-fuchsia-400" />
-                <span>Generative Latent Space & Motion Iterations</span>
+                <span>Generative Latent Space & Motion</span>
               </h3>
-              <p className="text-xs text-zinc-400 leading-relaxed max-w-xl">
+              <p className="text-xs text-zinc-400 leading-relaxed">
                 Animated sequence exploring iterative character dynamics, energy vortex forms, and fluid lighting transitions in the latent space.
               </p>
             </div>
           </div>
 
           {/* Prompt Engineering & Design Synthesis Cards */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
             <div className="p-4 rounded-xl bg-zinc-950/80 border border-cyan-500/20 flex flex-col gap-2 shadow-lg">
               <div className="flex items-center gap-2 text-xs font-mono text-cyan-400 uppercase tracking-wider font-semibold">
                 <Wand2 className="w-3.5 h-3.5" />

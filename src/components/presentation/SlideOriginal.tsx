@@ -23,77 +23,64 @@ export function SlideOriginal() {
       </div>
 
       {/* Main Collage Layout */}
-      <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+      <div className="grid grid-cols-1 lg:grid-cols-[395px_1fr] gap-6 items-start">
         {/* Left Column: Full Master Movie Poster */}
-        <div className="lg:col-span-5 flex flex-col gap-3 bg-zinc-950/80 p-4 rounded-2xl border border-purple-500/20 shadow-xl">
-          {/* Exact Poster Replica matching the Main Page */}
-          <div className="relative aspect-[1043/1477] w-full rounded-xl overflow-hidden shadow-2xl bg-[#06040d]">
-            {POSTER_LAYERS.map((layer) => {
-              const leftPosition = layer.offsetXPercent ? `${layer.offsetXPercent}%` : "0%";
-              const isLeaf = layer.id === "leaf";
+        <div className="relative aspect-[1043/1477] w-full max-w-[395px] mx-auto lg:mx-0 rounded-xl overflow-hidden border border-purple-500/30 shadow-2xl bg-[#06040d]">
+          {POSTER_LAYERS.map((layer) => {
+            const leftPosition = layer.offsetXPercent ? `${layer.offsetXPercent}%` : "0%";
+            const isLeaf = layer.id === "leaf";
 
-              return (
-                <div
-                  key={layer.id}
-                  style={{
-                    zIndex: layer.zIndex,
-                    left: leftPosition,
-                    mixBlendMode: layer.blendMode || "normal",
-                    opacity: layer.opacity ?? 1,
-                  }}
-                  className="absolute top-0 w-full h-full pointer-events-none select-none"
-                >
-                  <div className={`relative w-full h-full ${isLeaf ? "animate-float-leaves" : ""}`}>
-                    <Image
-                      src={layer.src}
-                      alt={layer.name}
-                      fill
-                      className="object-cover w-full h-full"
-                      sizes="(max-width: 1024px) 100vw, 450px"
-                    />
-                  </div>
-                </div>
-              );
-            })}
-
-            {/* Title and Subtitle Overlay */}
-            <TypographyOverlay />
-          </div>
-        </div>
-
-        {/* Right Column: Static Showcase of the Layers & Elements Used */}
-        <div className="lg:col-span-7 flex flex-col gap-4">
-          <div className="flex items-center">
-            <h3 className="text-sm font-semibold text-zinc-200 uppercase tracking-wider flex items-center gap-2">
-              <Layers className="w-4 h-4 text-fuchsia-400" />
-              <span>Photoshop Layers & Elements Used</span>
-            </h3>
-          </div>
-
-          {/* Static Layer Grid (Clean, no technical z-index badges) */}
-          <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-            {POSTER_LAYERS.map((layer) => (
+            return (
               <div
                 key={layer.id}
-                className="flex flex-col rounded-xl overflow-hidden border border-white/10 bg-zinc-900/60 shadow-md"
+                style={{
+                  zIndex: layer.zIndex,
+                  left: leftPosition,
+                  mixBlendMode: layer.blendMode || "normal",
+                  opacity: layer.opacity ?? 1,
+                }}
+                className="absolute top-0 w-full h-full pointer-events-none select-none"
               >
-                <div className="relative aspect-[1043/1477] w-full bg-black/60 overflow-hidden">
+                <div className={`relative w-full h-full ${isLeaf ? "animate-float-leaves" : ""}`}>
                   <Image
                     src={layer.src}
                     alt={layer.name}
                     fill
-                    className="object-cover"
-                    sizes="(max-width: 640px) 50vw, 200px"
+                    className="object-cover w-full h-full"
+                    sizes="400px"
                   />
                 </div>
-                <div className="p-2 bg-zinc-950/50">
-                  <span className="text-xs font-semibold text-zinc-200 truncate block">
-                    {layer.name}
-                  </span>
-                </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
+
+          {/* Title and Subtitle Overlay */}
+          <TypographyOverlay />
+        </div>
+
+        {/* Right Column: Static Showcase of the Layers & Elements Used */}
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          {POSTER_LAYERS.map((layer) => (
+            <div
+              key={layer.id}
+              className="flex flex-col rounded-xl overflow-hidden border border-white/10 bg-zinc-900/60 shadow-md"
+            >
+              <div className="relative aspect-[1043/1477] w-full bg-black/60 overflow-hidden">
+                <Image
+                  src={layer.src}
+                  alt={layer.name}
+                  fill
+                  className="object-cover"
+                  sizes="(max-width: 640px) 50vw, 180px"
+                />
+              </div>
+              <div className="p-2 bg-zinc-950/50">
+                <span className="text-xs font-semibold text-zinc-200 truncate block text-center">
+                  {layer.name}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
       </div>
     </div>
