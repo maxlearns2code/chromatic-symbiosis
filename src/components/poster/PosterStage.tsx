@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { POSTER_LAYERS } from "@/data/layersConfig";
 import { useMouseParallax } from "@/hooks/useMouseParallax";
 import { PosterLayer } from "./PosterLayer";
@@ -12,6 +12,38 @@ export function PosterStage() {
   const { springX, springY, containerRef } = useMouseParallax(0.8);
   const [isLeafMoving, setIsLeafMoving] = useState(false);
   const [isLeafHovered, setIsLeafHovered] = useState(false);
+  const [isLeafBlinking, setIsLeafBlinking] = useState(false);
+
+  // Use the exact hover light to gently blink after 1.5s, repeating while idle
+  useEffect(() => {
+    if (isLeafHovered || isLeafMoving) {
+      setIsLeafBlinking(false);
+      return;
+    }
+
+    let blinkOffTimer: ReturnType<typeof setTimeout>;
+    let loopInterval: ReturnType<typeof setInterval>;
+
+    const triggerBlink = () => {
+      setIsLeafBlinking(true);
+      blinkOffTimer = setTimeout(() => {
+        setIsLeafBlinking(false);
+      }, 650);
+    };
+
+    const initialTimer = setTimeout(() => {
+      triggerBlink();
+      loopInterval = setInterval(triggerBlink, 3500);
+    }, 1500);
+
+    return () => {
+      clearTimeout(initialTimer);
+      clearTimeout(blinkOffTimer);
+      clearInterval(loopInterval);
+    };
+  }, [isLeafHovered, isLeafMoving]);
+
+  const isLeafLit = (isLeafHovered || isLeafBlinking) && !isLeafMoving;
 
   return (
     <div
@@ -31,7 +63,7 @@ export function PosterStage() {
             springX={springX}
             springY={springY}
             isLeafMoving={isLeafMoving}
-            isLeafHovered={layer.id === "leaf" ? isLeafHovered : false}
+            isLeafHovered={layer.id === "leaf" ? isLeafLit : false}
           />
         ))}
 
@@ -41,10 +73,11 @@ export function PosterStage() {
         {/* Cinematic Headline & Subtitle Typography */}
         <TypographyOverlay />
 
-        {/* Interactive Leaf Trigger with White Halo on Hover */}
+        {/* Interactive Leaf Trigger with White Halo on Hover & Blink Hint */}
         <LeafPortalTransition
           onLeafMovingChange={setIsLeafMoving}
           onHoverChange={setIsLeafHovered}
+          isLit={isLeafLit}
         />
       </div>
     </div>

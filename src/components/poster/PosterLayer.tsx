@@ -65,7 +65,7 @@ export function PosterLayer({
             : {}
         }
         transition={{
-          filter: { duration: 0.2, ease: "easeOut" },
+          filter: { duration: 0.35, ease: "easeInOut" },
           x: { duration: 0.75, ease: "easeInOut" },
           y: { duration: 0.75, ease: "easeInOut" },
           scale: { duration: 0.75, ease: "easeInOut" },
