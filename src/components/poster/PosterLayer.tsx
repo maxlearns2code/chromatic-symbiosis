@@ -38,34 +38,28 @@ export function PosterLayer({
       }}
       className="absolute top-0 w-full h-full pointer-events-none select-none will-change-transform"
     >
-      {/* If leaf: floating idle, white halo on hover, and one single smooth continuous motion into the tree */}
+      {/* If leaf: floating idle, white glow on hover/blink, and one single smooth continuous motion into the tree */}
       <motion.div
         animate={
           isLeaf
-            ? {
-                filter: isLeafHovered
-                  ? "drop-shadow(0 0 16px rgba(255, 255, 255, 0.95)) drop-shadow(0 0 32px rgba(255, 255, 255, 0.75)) brightness(1.25)"
-                  : "drop-shadow(0 0 0px rgba(255, 255, 255, 0)) brightness(1)",
-                ...(isLeafMoving
-                  ? {
-                      x: "26%",
-                      y: "-35%",
-                      scale: 0.25,
-                      rotate: 25,
-                      opacity: 0,
-                    }
-                  : {
-                      x: "0%",
-                      y: "0%",
-                      scale: 1,
-                      rotate: 0,
-                      opacity: 1,
-                    }),
-              }
+            ? isLeafMoving
+              ? {
+                  x: "26%",
+                  y: "-35%",
+                  scale: 0.25,
+                  rotate: 25,
+                  opacity: 0,
+                }
+              : {
+                  x: "0%",
+                  y: "0%",
+                  scale: 1,
+                  rotate: 0,
+                  opacity: 1,
+                }
             : {}
         }
         transition={{
-          filter: { duration: 0.35, ease: "easeInOut" },
           x: { duration: 0.75, ease: "easeInOut" },
           y: { duration: 0.75, ease: "easeInOut" },
           scale: { duration: 0.75, ease: "easeInOut" },
@@ -80,7 +74,17 @@ export function PosterLayer({
           fill
           priority={layer.zIndex <= 30}
           sizes="(max-width: 768px) 100vw, (max-width: 1200px) 70vw, 850px"
-          className="object-cover w-full h-full transition-all"
+          style={
+            isLeaf
+              ? {
+                  filter:
+                    isLeafHovered && !isLeafMoving
+                      ? "drop-shadow(0 0 18px rgba(255, 255, 255, 1)) drop-shadow(0 0 36px rgba(255, 255, 255, 0.85)) brightness(1.6)"
+                      : "drop-shadow(0 0 0px rgba(255, 255, 255, 0)) drop-shadow(0 0 0px rgba(255, 255, 255, 0)) brightness(1)",
+                }
+              : undefined
+          }
+          className="object-cover w-full h-full transition-[filter] duration-300 ease-in-out"
         />
       </motion.div>
     </motion.div>
