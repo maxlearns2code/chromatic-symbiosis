@@ -3,25 +3,25 @@
 export function SlideLearnings2() {
   const reflections = [
     {
-      category: "Intentionality",
-      title: "Human Emotion vs. Generative Speed",
-      highlight: "AI illustrates concepts, but humans provide soul",
+      category: "One-Prompt Limitations",
+      title: "Generating Everything at Once Leads to Frustration",
+      highlight: "Interesting results, but never quite perfect",
       takeaway:
-        "AI generates cosmic palettes and motion in seconds, but cannot invent personal meaning. The emotional core, a father's bond with his twin sons, relies strictly on lived human experience and intentional prompting beyond generic sci-fi clichés.",
+        "I tested AI to generate posters, an animated GIF, and even the entire world. Seeing how the model interpreted the concept was interesting, yet generating a complete image from a single prompt is rarely enough to achieve your exact vision and often creates frustration.",
     },
     {
-      category: "Technical Architecture",
-      title: "Flat 2D Limitations vs. 2.5D Web Parallax",
-      highlight: "Interactive web depth requires discrete manual layer masks",
+      category: "Going Deeper with Code",
+      title: "Full Control Through AI-Assisted Development",
+      highlight: "Modifying every detail instead of settling for a flat render",
       takeaway:
-        "Generative AI produces flat, monolithic images. Building reactive depth, gyro-tilt parallax, and 3D exploded views strictly requires hand-isolated layers in Photoshop.",
+        "Using AI with specific technical tools like coding is far more useful because you can go deep and adjust every detail. This allowed me to build this presentation website and recreate my handcrafted poster as an interactive 2.5D web experience.",
     },
     {
-      category: "The Future Pipeline",
-      title: "The True Symbiosis: Hybrid Human + AI Workflow",
-      highlight: "AI for rapid divergence, human for emotional craft",
+      category: "Integrated Creative Tools",
+      title: "AI Inside Photoshop, Illustrator, and Blender",
+      highlight: "Building what we truly want, faster and deeper",
       takeaway:
-        "The ideal creative process mirrors our title: Symbiosis. AI expands the boundaries of possibility through instant visual and motion exploration, while the human designer commands emotional focus, layer architecture, and interactive craft.",
+        "The real strength of AI is not one-click image generation, but working alongside specialized creative software like Photoshop, Illustrator, or Blender. Embedded inside these workflows, AI helps us execute our exact creative intent faster and with greater depth.",
     },
   ];
 
@@ -39,7 +39,7 @@ export function SlideLearnings2() {
           </span>
         </h2>
         <p className="text-zinc-400 text-sm sm:text-base max-w-3xl leading-relaxed">
-          Three core reflections evaluating generative speed, manual layer control, and the hybrid human + AI creative workflow.
+          Why one-prompt generation falls short, and how pairing AI with code and specialized creative tools unlocks deeper control.
         </p>
       </div>
 
