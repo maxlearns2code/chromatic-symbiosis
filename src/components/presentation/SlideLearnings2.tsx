@@ -7,7 +7,7 @@ export function SlideLearnings2() {
       title: "Human Emotion vs. Generative Speed",
       highlight: "AI illustrates concepts, but humans provide soul",
       takeaway:
-        "AI generates cosmic palettes and motion in seconds, but cannot invent personal meaning. The emotional core—a father's bond with his twin sons—relies strictly on lived human experience and intentional prompting beyond generic sci-fi clichés.",
+        "AI generates cosmic palettes and motion in seconds, but cannot invent personal meaning. The emotional core, a father's bond with his twin sons, relies strictly on lived human experience and intentional prompting beyond generic sci-fi clichés.",
     },
     {
       category: "Technical Architecture",

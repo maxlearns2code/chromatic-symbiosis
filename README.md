@@ -12,14 +12,14 @@ Set on a rocky, ice-crusted ocean moon of Saturn sealed beneath a thick frozen c
 - **Light as Life:** Without sunlight or photosynthesis, all living beings generate their own bioluminescent light and internal heat. 
 - **Chromocommunication:** Instead of spoken words or human sight, this intelligent alien species communicates, navigates, and solves problems exclusively through **projected colored light waves and thermoreceptive heat sensation**.
 - **The Discovery:** While exploring an unvisited underwater mountain cave, twin brothers discover three warm, floating organic forms (autumn leaves, an impossible phenomenon in their world).
-- **The Living Portal:** As their father guides and protects them, the twins join hands to wrap their light around the leaves, unlocking a glowing compass that activates the giant swirling purple tree-like entity—a living dimensional portal.
+- **The Living Portal:** As their father guides and protects them, the twins join hands to wrap their light around the leaves, unlocking a glowing compass that activates the giant swirling purple tree-like entity, a living dimensional portal.
 
 ---
 
 ## 🎨 Creative Inspiration & Craft
 
 - **Family Inspiration:** Created by a father of young twin boys. A real conversation with his son about the colors of fallen autumn leaves inspired this sci-fi family adventure.
-- **100% Manual Photoshop Compositing:** Crafted by hand in Adobe Photoshop without generative AI—meticulously balancing layer masks, color harmony, differentiating the twin silhouettes, and integrating real autumn leaf photography into glowing light streams.
+- **100% Manual Photoshop Compositing:** Crafted by hand in Adobe Photoshop without generative AI, meticulously balancing layer masks, color harmony, differentiating the twin silhouettes, and integrating real autumn leaf photography into glowing light streams.
 
 ---
 
