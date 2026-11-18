@@ -26,7 +26,7 @@ export function SlideLearnings1() {
   ];
 
   return (
-    <div className="w-full max-w-5xl mx-auto flex flex-col gap-6 pb-16">
+    <div className="w-full max-w-4xl mx-auto flex flex-col gap-6 pb-16">
       {/* Minimalist Header */}
       <div className="flex flex-col gap-2">
         <span className="text-xs font-mono uppercase tracking-widest text-purple-400">
@@ -43,32 +43,30 @@ export function SlideLearnings1() {
         </p>
       </div>
 
-      {/* 3-Column Minimalist Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 items-stretch">
+      {/* Stacked Vertical Cards (Book-Style Reading Flow) */}
+      <div className="flex flex-col gap-4">
         {learnings.map((item, index) => (
           <div
             key={index}
-            className="p-6 rounded-2xl bg-zinc-950/60 border border-zinc-800/80 hover:border-purple-500/30 transition-all flex flex-col justify-between gap-4"
+            className="p-6 rounded-2xl bg-zinc-950/60 border border-zinc-800/80 hover:border-purple-500/30 transition-all flex flex-col gap-2.5"
           >
-            <div className="flex flex-col gap-2.5">
-              {/* Category */}
-              <span className="text-xs font-mono uppercase tracking-wider text-purple-300/80 font-medium">
-                {item.category}
-              </span>
+            {/* Category */}
+            <span className="text-xs font-mono uppercase tracking-wider text-purple-300/80 font-medium">
+              {item.category}
+            </span>
 
-              {/* Title */}
-              <h3 className="text-base sm:text-lg font-bold text-white leading-snug">
-                {item.title}
-              </h3>
+            {/* Title */}
+            <h3 className="text-lg sm:text-xl font-bold text-white leading-snug">
+              {item.title}
+            </h3>
 
-              {/* Highlight */}
-              <div className="text-xs sm:text-sm font-medium text-purple-200">
-                {item.highlight}
-              </div>
+            {/* Highlight */}
+            <div className="text-sm font-medium text-purple-200">
+              {item.highlight}
             </div>
 
             {/* Takeaway */}
-            <p className="text-xs sm:text-sm text-zinc-400 leading-relaxed pt-3 border-t border-zinc-900">
+            <p className="text-sm sm:text-base text-zinc-300 leading-relaxed pt-2 border-t border-zinc-900">
               {item.takeaway}
             </p>
           </div>
